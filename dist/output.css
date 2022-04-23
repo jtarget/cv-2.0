@@ -3933,6 +3933,14 @@ textarea.form-control.is-invalid{
   margin-top: 5rem;
 }
 
+.mr-2{
+  margin-right: 0.5rem;
+}
+
+.ml-2{
+  margin-left: 0.5rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -4009,6 +4017,14 @@ textarea.form-control.is-invalid{
   align-items: center;
 }
 
+.justify-start{
+  justify-content: flex-start;
+}
+
+.justify-end{
+  justify-content: flex-end;
+}
+
 .justify-center{
   justify-content: center;
 }
@@ -4079,6 +4095,10 @@ textarea.form-control.is-invalid{
 
 .text-center{
   text-align: center;
+}
+
+.align-middle{
+  vertical-align: middle;
 }
 
 .font-Cutive{
@@ -4298,6 +4318,12 @@ textarea.form-control.is-invalid{
   top: 0.2em;
 }
 
+@media (min-width: 640px){
+  .sm\:block{
+    display: block;
+  }
+}
+
 @media (min-width: 768px){
   .md\:w-full{
     width: 100%;
@@ -4305,6 +4331,11 @@ textarea.form-control.is-invalid{
 }
 
 @media (min-width: 1024px){
+  .lg\:mx-8{
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
   .lg\:mt-28{
     margin-top: 7rem;
   }
@@ -4321,11 +4352,19 @@ textarea.form-control.is-invalid{
     margin-bottom: 1rem;
   }
 
+  .lg\:flex{
+    display: flex;
+  }
+
   .lg\:w-2\/3{
     width: 66.666667%;
   }
 
   .lg\:w-1\/2{
     width: 50%;
+  }
+
+  .lg\:justify-center{
+    justify-content: center;
   }
 }
