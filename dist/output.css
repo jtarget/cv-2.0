@@ -3882,6 +3882,10 @@ textarea.form-control.is-invalid{
   float: left;
 }
 
+.m-10{
+  margin: 2.5rem;
+}
+
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -4045,6 +4049,10 @@ textarea.form-control.is-invalid{
   overflow: hidden;
 }
 
+.whitespace-pre-line{
+  white-space: pre-line;
+}
+
 .rounded-sm{
   border-radius: 0.125rem;
 }
@@ -4093,6 +4101,10 @@ textarea.form-control.is-invalid{
   padding-top: 11rem;
 }
 
+.text-left{
+  text-align: left;
+}
+
 .text-center{
   text-align: center;
 }
@@ -4137,6 +4149,10 @@ textarea.form-control.is-invalid{
   font-weight: 300;
 }
 
+.font-medium{
+  font-weight: 500;
+}
+
 .uppercase{
   text-transform: uppercase;
 }
@@ -4147,6 +4163,10 @@ textarea.form-control.is-invalid{
 
 .tracking-tighter{
   letter-spacing: -0.05em;
+}
+
+.tracking-tight{
+  letter-spacing: -0.025em;
 }
 
 .text-surfCrest{
@@ -4167,6 +4187,26 @@ textarea.form-control.is-invalid{
 .text-gray-400{
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.text-gray-700{
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.text-gray-800{
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+
+.text-black{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.underline{
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .shadow-classic{
@@ -4270,6 +4310,10 @@ textarea.form-control.is-invalid{
 .hover\:animate-spinslow:hover{
   -webkit-animation: spin 3s linear infinite;
           animation: spin 3s linear infinite;
+}
+
+.hover\:italic:hover{
+  font-style: italic;
 }
 
 .hover\:text-black:hover{
