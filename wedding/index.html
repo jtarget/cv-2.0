@@ -15,145 +15,317 @@
 		<title>João & Anja</title>
 		<style>
 			:root {
-				--paper: #f7f1e6;
-				--card: #fffbf4;
-				--ink: #2b2620;
-				--muted: #7a6f62;
-				--line: #e4d9c6;
-				--accent: #23404a;
-				--accent-soft: #e3ebec;
-				--gold: #a8843f;
+				--paper: #f6efe3;
+				--paper-deep: #efe5d4;
+				--card: #fffcf6;
+				--ink: #2a2520;
+				--muted: #7d7263;
+				--line: #e6dbc8;
+				--line-strong: #d8c8ad;
+				--accent: #1f3b45;
+				--gold: #a7823b;
+				--gold-soft: #f4ead6;
+				--gold-ink: #7a5c22;
+				--veg: #4f6b3a;
 				--error: #a3402e;
+				--shadow: 0 1px 2px rgba(60, 45, 25, .05), 0 8px 24px rgba(60, 45, 25, .06);
 				--serif: "Cormorant Garamond", "Songti SC", "Noto Serif SC", Georgia, serif;
 				--sans: Inter, "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
 			}
 			* { box-sizing: border-box; }
-			html { -webkit-text-size-adjust: 100%; }
+			[hidden] { display: none !important; }
+			html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 			body {
 				margin: 0;
-				background: var(--paper);
+				background:
+					radial-gradient(1200px 600px at 50% -10%, #fbf7ef 0%, transparent 60%),
+					var(--paper);
 				color: var(--ink);
 				font-family: var(--sans);
 				font-size: 16px;
 				line-height: 1.55;
+				-webkit-font-smoothing: antialiased;
 			}
 			.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+			a { color: inherit; }
 
-			/* Language switch */
+			/* Language switch, pinned so it is always reachable */
 			.langs {
-				display: flex; justify-content: center; gap: 4px;
-				padding: 18px 0 0;
+				position: sticky; top: 0; z-index: 20;
+				display: flex; justify-content: center; gap: 2px;
+				padding: 12px 0;
+				background: color-mix(in srgb, var(--paper) 82%, transparent);
+				-webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
 			}
 			.langs button {
-				font: 500 13px/1 var(--sans); letter-spacing: 0.06em;
+				font: 500 12px/1 var(--sans); letter-spacing: 0.08em;
 				background: none; border: 1px solid transparent; color: var(--muted);
 				padding: 8px 12px; border-radius: 999px; cursor: pointer;
+				transition: color .15s, background .15s, border-color .15s;
 			}
-			.langs button[aria-pressed="true"] { border-color: var(--line); color: var(--ink); background: var(--card); }
+			.langs button:hover { color: var(--ink); }
+			.langs button[aria-pressed="true"] { border-color: var(--line-strong); color: var(--ink); background: var(--card); }
 
-			/* Hero */
-			header { text-align: center; padding: 56px 0 40px; }
-			.flake { color: var(--gold); font-size: 20px; letter-spacing: 0.6em; }
-			.kicker { font: 500 12px/1 var(--sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 20px 0 14px; }
-			h1 { font: 500 clamp(52px, 13vw, 88px)/1 var(--serif); margin: 0; letter-spacing: -0.01em; }
-			h1 .amp { font-style: italic; color: var(--gold); font-weight: 400; }
-			.when { font: italic 400 22px/1.3 var(--serif); color: var(--muted); margin: 18px 0 0; }
-			.intro { max-width: 520px; margin: 28px auto 0; color: var(--ink); }
+			/* Hero, styled as an invitation card */
+			header { padding: 28px 0 56px; }
+			.invite {
+				position: relative; text-align: center;
+				background: var(--card); border-radius: 4px;
+				padding: 64px 28px 56px;
+				box-shadow: var(--shadow);
+				outline: 1px solid var(--line); outline-offset: -12px;
+			}
+			.invite::after {
+				content: ""; position: absolute; inset: 16px; pointer-events: none;
+				border: 1px solid var(--gold); opacity: .35; border-radius: 2px;
+			}
+			.ornament { display: block; margin: 0 auto; color: var(--gold); }
+			.kicker { font: 500 11px/1 var(--sans); letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin: 22px 0 16px; }
+			h1 { font: 500 clamp(54px, 13vw, 92px)/0.95 var(--serif); margin: 0; letter-spacing: -0.01em; }
+			h1 .amp { display: inline-block; font-style: italic; color: var(--gold); font-weight: 400; margin: 0 .04em; }
+			.when { font: italic 400 22px/1.3 var(--serif); color: var(--muted); margin: 20px 0 0; }
+			.intro { max-width: 470px; margin: 26px auto 0; color: var(--ink); font-size: 15px; }
+			.cta {
+				display: inline-flex; align-items: center; gap: 8px; margin-top: 30px;
+				font: 500 15px/1 var(--sans); color: #fff; background: var(--accent);
+				padding: 14px 24px; border-radius: 999px; text-decoration: none;
+				transition: transform .15s, box-shadow .15s;
+			}
+			.cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(31, 59, 69, .25); }
 
-			hr.rule { border: 0; height: 1px; background: var(--line); margin: 0; }
-			h2 { font: 500 34px/1.1 var(--serif); text-align: center; margin: 0 0 28px; }
-			section { padding: 48px 0; }
+			/* Section headings with a small flourish either side */
+			h2 {
+				display: flex; align-items: center; justify-content: center; gap: 16px;
+				font: 500 36px/1.1 var(--serif); text-align: center; margin: 0 0 36px;
+			}
+			h2::before, h2::after { content: ""; width: 44px; height: 1px; background: var(--line-strong); }
+			section { padding: 24px 0 56px; scroll-margin-top: 56px; }
 
-			/* Programme */
-			.day { margin-bottom: 36px; }
+			/* Programme as a timeline */
+			.day { margin-bottom: 40px; }
 			.day:last-child { margin-bottom: 0; }
-			.day-title { font: 600 12px/1 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
-			.event { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
-			.event .time { font: 500 22px/1.1 var(--serif); color: var(--gold); }
-			.event h3 { font: 500 22px/1.2 var(--serif); margin: 0 0 4px; }
+			.day-title {
+				display: inline-block; font: 600 11px/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase;
+				color: var(--accent); background: var(--card); border: 1px solid var(--line);
+				padding: 8px 14px; border-radius: 999px; margin: 0 0 6px;
+			}
+			.event:not(:last-child)::after {
+				content: ""; position: absolute; left: 75px; top: 40px; bottom: -25px;
+				width: 1px; background: var(--line-strong);
+			}
+			.event { position: relative; display: grid; grid-template-columns: 60px 1fr; gap: 32px; padding: 18px 0; }
+			.event::before {
+				content: ""; position: absolute; left: 71px; top: 27px;
+				width: 9px; height: 9px; border-radius: 50%;
+				background: var(--paper); border: 1.5px solid var(--gold);
+			}
+			.event .time { font: 500 23px/1.1 var(--serif); color: var(--gold); text-align: right; font-variant-numeric: lining-nums; }
+			.event h3 { font: 500 24px/1.15 var(--serif); margin: 0 0 6px; }
 			.event p { margin: 0; color: var(--muted); font-size: 15px; }
-			.event .maps { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px 16px; }
-			.event .map { font-size: 14px; font-weight: 500; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--line); }
-			.event .map::before { content: "📍 "; }
+			.event .maps { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+			.event .map {
+				display: inline-flex; align-items: center; gap: 6px;
+				font-size: 13px; font-weight: 500; color: var(--accent); text-decoration: none;
+				background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px 6px 10px;
+				transition: border-color .15s, background .15s;
+			}
+			.event .map::before {
+				content: ""; width: 12px; height: 12px; flex: none;
+				background: currentColor;
+				-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center / contain no-repeat;
+				mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center / contain no-repeat;
+			}
 			.event .map:hover { border-color: var(--accent); }
-			.event .on-us { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; }
+			.event .on-us {
+				display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+				font-size: 12px; font-weight: 500; color: var(--gold-ink); background: var(--gold-soft);
+				padding: 5px 12px; border-radius: 999px;
+			}
+			.event .on-us::before { content: "✦"; font-size: 10px; color: var(--gold); }
 
-			/* Form */
-			form { display: grid; gap: 36px; }
-			.field label.title, .field .title { display: block; font: 500 24px/1.2 var(--serif); margin-bottom: 6px; }
-			.hint { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+			/* Form on its own sheet of paper, with numbered steps */
+			.sheet {
+				background: var(--card); border-radius: 18px; box-shadow: var(--shadow);
+				padding: 40px 32px; border: 1px solid var(--line);
+			}
+			form { display: grid; gap: 40px; counter-reset: step; }
+			.field > .title { counter-increment: step; }
+			.field > .title::before {
+				content: counter(step);
+				display: inline-grid; place-items: center; vertical-align: 4px;
+				width: 26px; height: 26px; margin-right: 12px; border-radius: 50%;
+				font: 600 12px/1 var(--sans); color: var(--gold-ink); background: var(--gold-soft);
+			}
+			.field label.title, .field .title { display: block; font: 500 26px/1.2 var(--serif); margin-bottom: 6px; }
+			.hint { color: var(--muted); font-size: 14px; margin: 0 0 16px; padding-left: 38px; }
+			.field > .title + input, .field > .title + textarea { margin-top: 10px; }
 			input[type="text"], textarea {
 				width: 100%; font: 400 16px/1.4 var(--sans); color: var(--ink);
-				background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-				padding: 14px 16px; outline: none;
+				background: #fff; border: 1px solid var(--line-strong); border-radius: 12px;
+				padding: 15px 16px; outline: none; transition: border-color .15s, box-shadow .15s;
 			}
-			input[type="text"]:focus, textarea:focus { border-color: var(--accent); }
+			input[type="text"]:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(31, 59, 69, .08); }
 			textarea { min-height: 120px; resize: vertical; }
 
 			.checks { display: grid; gap: 10px; }
 			.check {
-				display: flex; gap: 14px; align-items: flex-start; cursor: pointer;
-				background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+				position: relative; display: flex; gap: 14px; align-items: center; cursor: pointer;
+				background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 15px 16px;
+				transition: border-color .15s, background .15s, box-shadow .15s;
 			}
-			.check input { margin: 3px 0 0; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
-			.check:has(input:checked) { border-color: var(--accent); }
+			.check:hover { border-color: var(--line-strong); }
+			.check input {
+				appearance: none; -webkit-appearance: none; margin: 0; flex: none;
+				width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid var(--line-strong); background: #fff;
+				display: grid; place-items: center; transition: background .15s, border-color .15s;
+			}
+			.check input[type="radio"] { border-radius: 50%; }
+			.check input::after {
+				content: ""; width: 10px; height: 6px; margin-top: -3px;
+				border: 2px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) scale(0);
+				transition: transform .15s;
+			}
+			.check input:checked { background: var(--accent); border-color: var(--accent); }
+			.check input:checked::after { transform: rotate(-45deg) scale(1); }
+			.check input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+			.check:has(input:checked) { border-color: var(--accent); background: #fbfcfc; box-shadow: 0 0 0 1px var(--accent); }
+			.check:has(input:disabled) { opacity: .5; cursor: not-allowed; }
 			.check strong { display: block; font-weight: 500; }
-			.check span { color: var(--muted); font-size: 14px; }
+			.check span { color: var(--muted); font-size: 13px; }
+			.check.none { background: transparent; border-style: dashed; }
 
 			.boat-only[hidden] { display: none; }
+			.boat-only:not([hidden]) { animation: rise .35s ease both; }
+			@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
 
 			/* Segmented choice */
-			.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 5px; margin-bottom: 18px; }
-			.seg button { font: 500 15px/1.2 var(--sans); padding: 12px 10px; border: 0; border-radius: 10px; background: none; color: var(--muted); cursor: pointer; }
-			.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+			.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--paper-deep); border-radius: 14px; padding: 4px; margin-bottom: 16px; }
+			.seg button { font: 500 15px/1.2 var(--sans); padding: 12px 10px; border: 0; border-radius: 10px; background: none; color: var(--muted); cursor: pointer; transition: background .15s, color .15s, box-shadow .15s; }
+			.seg button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(60, 45, 25, .12); }
 
-			.counter { font-size: 14px; color: var(--accent); font-weight: 500; margin: 0 0 14px; }
-			.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
-			.card {
-				position: relative; display: block; cursor: pointer; text-align: left;
-				background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-				transition: border-color .15s, box-shadow .15s, opacity .15s;
+			/* Diet filter */
+			.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+			.filters button {
+				font: 500 13px/1 var(--sans); color: var(--muted); cursor: pointer;
+				background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px;
+				transition: color .15s, border-color .15s, background .15s;
 			}
+			.filters button[aria-pressed="true"] { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+			.counter { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--accent); font-weight: 500; margin: 0 0 14px; }
+			.dots { display: inline-flex; gap: 5px; }
+			.dots i { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--accent); transition: background .15s; }
+			.dots i.on { background: var(--accent); }
+
+			.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+			.card {
+				position: relative; display: flex; flex-direction: column; cursor: pointer; text-align: left;
+				background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+				transition: border-color .15s, box-shadow .2s, transform .2s, opacity .15s;
+			}
+			.card[hidden] { display: none; }
+			.card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 			.card input { position: absolute; opacity: 0; pointer-events: none; }
-			.card img { display: block; width: 100%; height: auto; aspect-ratio: 860 / 696; object-fit: cover; background: var(--line); }
-			.card .body { padding: 12px 14px 14px; }
+			.card img { display: block; width: 100%; height: auto; aspect-ratio: 860 / 696; object-fit: cover; background: var(--paper-deep); transition: transform .4s; }
+			.card:hover img { transform: scale(1.03); }
+			.card .body { padding: 12px 14px 14px; position: relative; background: #fff; flex: 1; }
 			.card h4 { font: 500 20px/1.15 var(--serif); margin: 0 0 4px; }
-			.card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.45; }
-			.card .veg { display: inline-block; font-size: 11px; font-weight: 500; color: #4d6b3a; margin-top: 8px; }
+			.card p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+			.card .veg { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; letter-spacing: .02em; color: var(--veg); margin-top: 8px; }
 			.card .tick {
 				position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%;
-				background: rgba(255,251,244,.92); border: 1px solid var(--line);
-				display: grid; place-items: center; font-size: 16px; color: transparent;
+				background: rgba(255, 255, 255, .9); border: 1px solid rgba(0, 0, 0, .06);
+				-webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+				display: grid; place-items: center; font: 600 14px/1 var(--sans); color: transparent;
+				transition: background .15s, color .15s, transform .2s;
 			}
 			.card:has(input:checked) { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
-			.card:has(input:checked) .tick { background: var(--accent); border-color: var(--accent); color: #fff; }
-			.card:has(input:disabled) { opacity: .45; cursor: not-allowed; }
+			.card:has(input:checked) .tick { background: var(--accent); border-color: var(--accent); color: #fff; transform: scale(1.08); }
+			.card:has(input:disabled) { opacity: .4; cursor: not-allowed; transform: none; box-shadow: none; }
+			.card:has(input:disabled) img { transform: none; }
 			.card:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
+			.bundle-grid { grid-template-columns: repeat(2, 1fr); }
 
 			.drinks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+			.drinks .check { flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 22px 14px 18px; }
+			.drinks .check input { position: absolute; top: 12px; left: 12px; }
+			.drinks .emoji { font-size: 34px; line-height: 1; }
+
+			/* Picks tray, follows the guest while scrolling the menu */
+			.tray {
+				position: fixed; left: 50%; bottom: 16px; z-index: 30;
+				transform: translate(-50%, calc(100% + 40px)); visibility: hidden;
+				transition: transform .3s ease, visibility 0s .3s;
+				display: flex; align-items: center; gap: 12px;
+				background: var(--accent); color: #fff; border-radius: 999px;
+				padding: 8px 18px 8px 8px; box-shadow: 0 10px 30px rgba(20, 35, 40, .3);
+				font: 500 14px/1 var(--sans); white-space: nowrap;
+			}
+			.tray.show { transform: translate(-50%, 0); visibility: visible; transition: transform .3s ease; }
+			.tray .slots { display: flex; }
+			.tray .slot {
+				width: 36px; height: 36px; border-radius: 50%; margin-right: -8px;
+				border: 2px solid var(--accent); background: rgba(255, 255, 255, .15) center / cover;
+			}
+			.tray .slot:last-child { margin-right: 0; }
+			.tray.done { background: #2f5a3d; }
+			.tray.done .slot { border-color: #2f5a3d; }
 
 			.error { color: var(--error); font-size: 14px; margin: 10px 0 0; }
 			.error:empty { display: none; }
 
 			.submit {
 				font: 500 17px/1 var(--sans); color: #fff; background: var(--accent);
-				border: 0; border-radius: 999px; padding: 18px 28px; width: 100%; cursor: pointer;
+				border: 0; border-radius: 999px; padding: 19px 28px; width: 100%; cursor: pointer;
+				transition: transform .15s, box-shadow .15s, opacity .15s;
 			}
-			.submit:disabled { opacity: .6; cursor: wait; }
+			.submit:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(31, 59, 69, .25); }
+			.submit:disabled { opacity: .6; cursor: wait; transform: none; box-shadow: none; }
 
-			.thanks { text-align: center; padding: 72px 0; }
-			.thanks h2 { margin-bottom: 12px; }
-			.thanks p { color: var(--muted); max-width: 460px; margin: 0 auto 24px; }
-			.thanks button { font: 500 15px/1 var(--sans); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 12px 20px; cursor: pointer; color: var(--ink); }
+			.thanks { text-align: center; padding: 24px 0 8px; animation: rise .4s ease both; }
+			.thanks h2::before, .thanks h2::after { display: none; }
+			.thanks h2 { margin: 16px 0 10px; font-size: 40px; }
+			.thanks > p { color: var(--muted); max-width: 440px; margin: 0 auto 24px; }
+			.summary {
+				list-style: none; margin: 0 auto 28px; padding: 18px 20px; max-width: 420px; text-align: left;
+				background: var(--paper); border-radius: 14px; display: grid; gap: 10px;
+			}
+			.summary:empty { display: none; }
+			.summary li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: 14px; }
+			.summary li b { font-weight: 500; }
+			.thanks button { font: 500 15px/1 var(--sans); background: none; border: 1px solid var(--line-strong); border-radius: 999px; padding: 12px 20px; cursor: pointer; color: var(--ink); }
 
-			footer { text-align: center; color: var(--muted); padding: 40px 0 56px; font: italic 18px/1.4 var(--serif); }
+			footer { text-align: center; color: var(--muted); padding: 24px 0 64px; font: italic 20px/1.4 var(--serif); }
+			footer .ornament { margin-bottom: 10px; }
 
-			@media (max-width: 480px) {
+			/* Gentle entrance as sections scroll into view */
+			.reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+			.reveal.in { opacity: 1; transform: none; }
+
+			@media (max-width: 640px) {
 				.grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+			}
+			@media (max-width: 480px) {
+				.wrap { padding: 0 16px; }
+				header { padding: 16px 0 40px; }
+				.invite { padding: 52px 22px 44px; }
+				h2 { font-size: 32px; }
+				h2::before, h2::after { width: 28px; }
+				.sheet { padding: 28px 18px; border-radius: 16px; margin: 0 -4px; }
 				.card h4 { font-size: 17px; }
 				.card p { font-size: 12px; }
 				.card .body { padding: 10px 11px 12px; }
-				.event { grid-template-columns: 54px 1fr; gap: 12px; }
+				.event:not(:last-child)::after { left: 61px; }
+				.event { grid-template-columns: 48px 1fr; gap: 28px; }
+				.event::before { left: 57px; }
+				.event .time { font-size: 20px; }
+				.event h3 { font-size: 22px; }
+				.hint { padding-left: 0; }
+			}
+			@media (prefers-reduced-motion: reduce) {
+				*, *::before, *::after { animation: none !important; transition: none !important; }
+				.reveal { opacity: 1; transform: none; }
+				html { scroll-behavior: auto; }
 			}
 		</style>
 	</head>
@@ -166,21 +338,23 @@
 				<button type="button" data-lang="zh">中文</button>
 			</nav>
 
-			<header>
-				<div class="flake" aria-hidden="true">✻ ✻ ✻</div>
-				<p class="kicker" data-t="kicker"></p>
-				<h1>João <span class="amp">&amp;</span> Anja</h1>
-				<p class="when" data-t="when"></p>
-				<p class="intro" data-t="intro"></p>
+			<header class="reveal">
+				<div class="invite">
+					<svg class="ornament" width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><g><path d="M20 4v32M6.1 12l27.8 16M6.1 28l27.8-16"/><path d="M20 4l-3 3M20 4l3 3M20 36l-3-3M20 36l3-3M6.1 12l1.1 4.1M6.1 12l4.1-1.1M33.9 28l-1.1-4.1M33.9 28l-4.1 1.1M6.1 28l4.1 1.1M6.1 28l1.1-4.1M33.9 12l-4.1-1.1M33.9 12l-1.1 4.1"/><circle cx="20" cy="20" r="2.2"/></g></svg>
+					<p class="kicker" data-t="kicker"></p>
+					<h1>João <span class="amp">&amp;</span> Anja</h1>
+					<p class="when" data-t="when"></p>
+					<p class="intro" data-t="intro"></p>
+					<a class="cta" href="#rsvp-section"><span data-t="cta"></span> <span aria-hidden="true">↓</span></a>
+				</div>
 			</header>
 
-			<hr class="rule" />
-
-			<section aria-labelledby="programme">
+			<section aria-labelledby="programme" class="reveal">
 				<h2 id="programme" data-t="programme"></h2>
 
 				<div class="day">
 					<p class="day-title" data-t="day1"></p>
+					<div class="events">
 					<div class="event">
 						<div class="time">11:30</div>
 						<div>
@@ -198,10 +372,12 @@
 							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Tivoli%20Gardens%2C%20Vesterbrogade%203%2C%201630%20K%C3%B8benhavn" target="_blank" rel="noopener">Tivoli</a></p>
 						</div>
 					</div>
+					</div>
 				</div>
 
 				<div class="day">
 					<p class="day-title" data-t="day2"></p>
+					<div class="events">
 					<div class="event">
 						<div class="time">09:50</div>
 						<div>
@@ -228,14 +404,14 @@
 							<span class="on-us" data-t="dinnerOnUs"></span>
 						</div>
 					</div>
+					</div>
 				</div>
 			</section>
 
-			<hr class="rule" />
-
-			<section aria-labelledby="rsvp" id="rsvp-section">
+			<section aria-labelledby="rsvp" id="rsvp-section" class="reveal">
 				<h2 id="rsvp" data-t="rsvp"></h2>
 
+				<div class="sheet">
 				<form id="form" novalidate>
 					<div class="field">
 						<label class="title" for="name" data-t="nameLabel"></label>
@@ -251,7 +427,7 @@
 							<label class="check"><input type="checkbox" name="events" value="ceremony" /><div><strong data-t="evCeremony"></strong><span data-t="evCeremonyWhen"></span></div></label>
 							<label class="check"><input type="checkbox" name="events" value="louisiana" /><div><strong data-t="evLouisiana"></strong><span data-t="evLouisianaWhen"></span></div></label>
 							<label class="check"><input type="checkbox" name="events" value="dinner" /><div><strong data-t="evDinner"></strong><span data-t="evDinnerWhen"></span></div></label>
-							<label class="check"><input type="checkbox" name="none" id="none" /><div><strong data-t="evNone"></strong></div></label>
+							<label class="check none"><input type="checkbox" name="none" id="none" /><div><strong data-t="evNone"></strong></div></label>
 						</div>
 						<p class="error" id="err-events"></p>
 					</div>
@@ -264,11 +440,17 @@
 							<button type="button" data-mode="bundle" aria-pressed="false" data-t="modeBundle"></button>
 						</div>
 						<div id="singles">
+							<div class="filters" role="group">
+								<button type="button" data-filter="all" aria-pressed="true" data-t="filterAll"></button>
+								<button type="button" data-filter="veg" aria-pressed="false" data-t="filterVeg"></button>
+								<button type="button" data-filter="fish" aria-pressed="false" data-t="filterFish"></button>
+								<button type="button" data-filter="meat" aria-pressed="false" data-t="filterMeat"></button>
+							</div>
 							<p class="counter" id="counter"></p>
 							<div class="grid" id="singles-grid"></div>
 						</div>
 						<div id="bundles" hidden>
-							<div class="grid" id="bundles-grid"></div>
+							<div class="grid bundle-grid" id="bundles-grid"></div>
 						</div>
 						<p class="error" id="err-sandwich"></p>
 					</div>
@@ -276,8 +458,8 @@
 					<div class="field boat-only" hidden>
 						<span class="title" data-t="drinkLabel"></span>
 						<div class="drinks">
-							<label class="check"><input type="radio" name="drink" value="Hot chocolate" /><div><strong data-t="drinkChoc"></strong></div></label>
-							<label class="check"><input type="radio" name="drink" value="Mulled wine" /><div><strong data-t="drinkWine"></strong></div></label>
+							<label class="check"><input type="radio" name="drink" value="Hot chocolate" /><span class="emoji" aria-hidden="true">☕</span><strong data-t="drinkChoc"></strong></label>
+							<label class="check"><input type="radio" name="drink" value="Mulled wine" /><span class="emoji" aria-hidden="true">🍷</span><strong data-t="drinkWine"></strong></label>
 						</div>
 						<p class="error" id="err-drink"></p>
 					</div>
@@ -295,14 +477,21 @@
 				</form>
 
 				<div class="thanks" id="thanks" hidden>
-					<div class="flake" aria-hidden="true">✻</div>
+					<svg class="ornament" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><g><path d="M20 4v32M6.1 12l27.8 16M6.1 28l27.8-16"/><path d="M20 4l-3 3M20 4l3 3M20 36l-3-3M20 36l3-3M6.1 12l1.1 4.1M6.1 12l4.1-1.1M33.9 28l-1.1-4.1M33.9 28l-4.1 1.1M6.1 28l4.1 1.1M6.1 28l1.1-4.1M33.9 12l-4.1-1.1M33.9 12l-1.1 4.1"/><circle cx="20" cy="20" r="2.2"/></g></svg>
 					<h2 data-t="thanksTitle"></h2>
 					<p data-t="thanksText"></p>
+					<ul class="summary" id="summary"></ul>
 					<button type="button" id="again" data-t="again"></button>
+				</div>
 				</div>
 			</section>
 
-			<footer>João &amp; Anja · København 2026</footer>
+			<footer><svg class="ornament" width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><g><path d="M20 4v32M6.1 12l27.8 16M6.1 28l27.8-16"/><path d="M20 4l-3 3M20 4l3 3M20 36l-3-3M20 36l3-3M6.1 12l1.1 4.1M6.1 12l4.1-1.1M33.9 28l-1.1-4.1M33.9 28l-4.1 1.1M6.1 28l4.1 1.1M6.1 28l1.1-4.1M33.9 12l-4.1-1.1M33.9 12l-1.1 4.1"/><circle cx="20" cy="20" r="2.2"/></g></svg><div>João &amp; Anja · København 2026</div></footer>
+		</div>
+
+		<div class="tray" id="tray" aria-hidden="true">
+			<div class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
+			<span id="tray-text"></span>
 		</div>
 
 		<script src="menu.js"></script>
@@ -313,6 +502,15 @@
 			const T = {
 				en: {
 					kicker: "We're getting married",
+					cta: "Answer here",
+					filterAll: "All",
+					filterVeg: "Vegetarian",
+					filterFish: "Fish",
+					filterMeat: "Meat",
+					tray: (n) => (n === 3 ? "All 3 chosen" : `${n} of 3 chosen`),
+					sumEvents: "Joining",
+					sumFood: "Smørrebrød",
+					sumDrink: "Drink",
 					when: "Copenhagen · 8 and 9 December 2026",
 					intro: "We would love to celebrate with you. Here is the plan for the two days. Please fill in the form below so we can get everything ready.",
 					programme: "The plan",
@@ -370,6 +568,15 @@
 				},
 				pt: {
 					kicker: "Vamos casar",
+					cta: "Responder aqui",
+					filterAll: "Todas",
+					filterVeg: "Vegetarianas",
+					filterFish: "Peixe",
+					filterMeat: "Carne",
+					tray: (n) => (n === 3 ? "As 3 escolhidas" : `${n} de 3 escolhidas`),
+					sumEvents: "Vais a",
+					sumFood: "Smørrebrød",
+					sumDrink: "Bebida",
 					when: "Copenhaga · 8 e 9 de dezembro de 2026",
 					intro: "Adorávamos celebrar convosco. Aqui está o plano para os dois dias. Preenche o formulário abaixo para podermos preparar tudo.",
 					programme: "O plano",
@@ -427,6 +634,15 @@
 				},
 				de: {
 					kicker: "Wir heiraten",
+					cta: "Hier antworten",
+					filterAll: "Alle",
+					filterVeg: "Vegetarisch",
+					filterFish: "Fisch",
+					filterMeat: "Fleisch",
+					tray: (n) => (n === 3 ? "Alle 3 ausgewählt" : `${n} von 3 ausgewählt`),
+					sumEvents: "Dabei bei",
+					sumFood: "Smørrebrød",
+					sumDrink: "Getränk",
 					when: "Kopenhagen · 8. und 9. Dezember 2026",
 					intro: "Wir würden uns sehr freuen, mit euch zu feiern. Hier ist der Plan für die zwei Tage. Bitte füllt das Formular unten aus, damit wir alles vorbereiten können.",
 					programme: "Der Plan",
@@ -484,6 +700,15 @@
 				},
 				zh: {
 					kicker: "我们要结婚了",
+					cta: "在此回复",
+					filterAll: "全部",
+					filterVeg: "素食",
+					filterFish: "鱼类",
+					filterMeat: "肉类",
+					tray: (n) => (n === 3 ? "3份已选好" : `已选 ${n} / 3`),
+					sumEvents: "参加",
+					sumFood: "开放式三明治",
+					sumDrink: "饮品",
 					when: "哥本哈根 · 2026年12月8日和9日",
 					intro: "我们很希望与您一起庆祝。以下是两天的安排。请填写下面的表格，方便我们做好准备。",
 					programme: "行程安排",
@@ -547,6 +772,10 @@
 
 			let lang = pickLang();
 			let mode = "singles";
+			let filter = "all";
+			const FISH = new Set(["rejer-surdej", "sild", "aeg-rejer", "laksetatar", "laks", "roedspaette", "roedspaette-rejesalat"]);
+			const kind = (item) => (item.veg ? "veg" : FISH.has(item.id) ? "fish" : "meat");
+			const picks = []; // single sandwich ids, in the order they were chosen
 
 			function pickLang() {
 				try {
@@ -562,26 +791,34 @@
 
 			function card(item, type) {
 				const [title, desc] = item[lang];
-				return `<label class="card">
+				return `<label class="card" data-kind="${kind(item)}">
 					<input type="${type}" name="${type === "radio" ? "bundle" : "single"}" value="${item.id}" />
-					<img src="img/${item.id}.jpg" alt="" loading="lazy" width="860" height="696" />
+					<img src="img/${item.id}.jpg" alt="" loading="lazy" decoding="async" width="860" height="696" />
 					<span class="tick" aria-hidden="true">✓</span>
 					<div class="body">
 						<h4>${title}</h4>
 						<p>${desc}</p>
-						${item.veg ? `<span class="veg">✿ ${T[lang].veg}</span>` : ""}
+						${item.veg ? `<span class="veg">🌱 ${T[lang].veg}</span>` : ""}
 					</div>
 				</label>`;
 			}
 
 			function renderMenu() {
-				const picked = new Set($$('input[name="single"]:checked').map((i) => i.value));
 				const bundle = $('input[name="bundle"]:checked')?.value;
 				$("#singles-grid").innerHTML = MENU.singles.map((i) => card(i, "checkbox")).join("");
 				$("#bundles-grid").innerHTML = MENU.bundles.map((i) => card(i, "radio")).join("");
-				$$('input[name="single"]').forEach((i) => (i.checked = picked.has(i.value)));
+				$$('input[name="single"]').forEach((i) => (i.checked = picks.includes(i.value)));
 				$$('input[name="bundle"]').forEach((i) => (i.checked = i.value === bundle));
+				applyFilter();
 				updateSingles();
+			}
+
+			function applyFilter() {
+				$$(".filters button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.filter === filter));
+				// Chosen sandwiches stay visible so a pick never disappears from view.
+				$$("#singles-grid .card").forEach((c) => {
+					c.hidden = filter !== "all" && c.dataset.kind !== filter && !c.querySelector("input").checked;
+				});
 			}
 
 			function applyLang() {
@@ -597,10 +834,34 @@
 			}
 
 			function updateSingles() {
-				const checked = $$('input[name="single"]:checked').length;
-				$("#counter").textContent = T[lang].counter(checked);
-				$$('input[name="single"]').forEach((i) => (i.disabled = !i.checked && checked >= 3));
+				const n = picks.length;
+				const dots = [0, 1, 2].map((i) => `<i class="${i < n ? "on" : ""}"></i>`).join("");
+				$("#counter").innerHTML = `<span class="dots">${dots}</span>${T[lang].counter(n)}`;
+				$$('input[name="single"]').forEach((i) => {
+					i.disabled = !i.checked && n >= 3;
+					const order = picks.indexOf(i.value);
+					i.closest(".card").querySelector(".tick").textContent = order >= 0 ? order + 1 : "";
+				});
+				updateTray();
 			}
+
+			// The tray shows while the sandwich list is on screen and singles are being chosen.
+			let menuInView = false;
+			function updateTray() {
+				const tray = $("#tray");
+				const n = picks.length;
+				const boat = $('input[name="events"][value="boat"]')?.checked;
+				$$("#tray .slot").forEach((el, i) => {
+					el.style.backgroundImage = picks[i] ? `url(img/${picks[i]}.jpg)` : "";
+				});
+				$("#tray-text").textContent = T[lang].tray(n);
+				tray.classList.toggle("done", n === 3);
+				tray.classList.toggle("show", Boolean(boat && mode === "singles" && menuInView && !$("#form").hidden));
+			}
+			new IntersectionObserver(([e]) => {
+				menuInView = e.isIntersecting;
+				updateTray();
+			}, { rootMargin: "-30% 0px -10% 0px" }).observe($("#singles-grid"));
 
 			function setMode(m) {
 				mode = m;
@@ -608,6 +869,7 @@
 				$("#singles").hidden = m !== "singles";
 				$("#bundles").hidden = m !== "bundle";
 				$("#err-sandwich").textContent = "";
+				updateTray();
 			}
 
 			function updateEvents() {
@@ -618,6 +880,7 @@
 				});
 				const boat = $('input[name="events"][value="boat"]').checked;
 				$$(".boat-only").forEach((el) => (el.hidden = !boat));
+				updateTray();
 			}
 
 			function clearErrors() {
@@ -652,7 +915,7 @@
 				const daName = (list, id) => list.find((i) => i.id === id).da;
 				let sandwiches = "";
 				if (boat && mode === "singles")
-					sandwiches = $$('input[name="single"]:checked').map((i) => daName(MENU.singles, i.value)).join(", ");
+					sandwiches = picks.map((id) => daName(MENU.singles, id)).join(", ");
 				if (boat && mode === "bundle")
 					sandwiches = daName(MENU.bundles, $('input[name="bundle"]:checked').value) + " (set)";
 				const yes = (e) => (events.includes(e) ? "yes" : "no");
@@ -686,7 +949,9 @@
 					}
 					$("#form").hidden = true;
 					$("#thanks").hidden = false;
-					$("#thanks p").textContent = data.coming === "yes" ? T[lang].thanksText : T[lang].thanksTextNo;
+					$("#thanks > p").textContent = data.coming === "yes" ? T[lang].thanksText : T[lang].thanksTextNo;
+					$("#summary").innerHTML = summary(data);
+					updateTray();
 					$("#rsvp-section").scrollIntoView({ behavior: "smooth" });
 				} catch (err) {
 					$("#err-send").textContent = T[lang].errSend;
@@ -696,8 +961,29 @@
 				}
 			}
 
+			function summary(data) {
+				const t = T[lang];
+				const title = (list, id) => list.find((i) => i.id === id)[lang][0];
+				const events = { boat: t.evBoat, ceremony: t.evCeremony, louisiana: t.evLouisiana, dinner: t.evDinner };
+				const joined = Object.keys(events).filter((k) => data[k] === "yes").map((k) => events[k]);
+				if (!joined.length) return "";
+				const rows = [["🗓", t.sumEvents, joined.join(", ")]];
+				if (data.boat === "yes") {
+					const food = mode === "singles"
+						? picks.map((id) => title(MENU.singles, id)).join(", ")
+						: title(MENU.bundles, $('input[name="bundle"]:checked').value);
+					const drink = data.drink === "Hot chocolate" ? t.drinkChoc : t.drinkWine;
+					rows.push(["🥪", t.sumFood, food], [data.drink === "Hot chocolate" ? "☕" : "🍷", t.sumDrink, drink]);
+				}
+				const esc = (v) => v.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+				return rows.map(([icon, label, value]) => `<li><span>${icon}</span><span><b>${label}:</b> ${esc(value)}</span></li>`).join("");
+			}
+
 			function reset() {
 				$("#form").reset();
+				picks.length = 0;
+				filter = "all";
+				applyFilter();
 				setMode("singles");
 				updateEvents();
 				updateSingles();
@@ -714,7 +1000,17 @@
 				})
 			);
 			$$(".seg button").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.mode)));
-			$("#singles-grid").addEventListener("change", () => {
+			$$(".filters button").forEach((b) =>
+				b.addEventListener("click", () => {
+					filter = b.dataset.filter;
+					applyFilter();
+				})
+			);
+			$("#singles-grid").addEventListener("change", (e) => {
+				const id = e.target.value;
+				if (e.target.checked) picks.push(id);
+				else picks.splice(picks.indexOf(id), 1);
+				applyFilter();
 				updateSingles();
 				$("#err-sandwich").textContent = "";
 			});
@@ -730,6 +1026,16 @@
 
 			applyLang();
 			updateEvents();
+
+			const reveal = new IntersectionObserver((entries) => {
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						e.target.classList.add("in");
+						reveal.unobserve(e.target);
+					}
+				});
+			}, { threshold: 0.08 });
+			$$(".reveal").forEach((el) => reveal.observe(el));
 		</script>
 	</body>
 </html>
