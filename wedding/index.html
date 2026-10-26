@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex, nofollow" />
+		<meta name="color-scheme" content="light" />
+		<link rel="icon" href="../images/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<title>João & Anja</title>
+		<style>
+			:root {
+				--paper: #f7f1e6;
+				--card: #fffbf4;
+				--ink: #2b2620;
+				--muted: #7a6f62;
+				--line: #e4d9c6;
+				--accent: #23404a;
+				--accent-soft: #e3ebec;
+				--gold: #a8843f;
+				--error: #a3402e;
+				--serif: "Cormorant Garamond", "Songti SC", "Noto Serif SC", Georgia, serif;
+				--sans: Inter, "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+			}
+			* { box-sizing: border-box; }
+			html { -webkit-text-size-adjust: 100%; }
+			body {
+				margin: 0;
+				background: var(--paper);
+				color: var(--ink);
+				font-family: var(--sans);
+				font-size: 16px;
+				line-height: 1.55;
+			}
+			.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+			/* Language switch */
+			.langs {
+				display: flex; justify-content: center; gap: 4px;
+				padding: 18px 0 0;
+			}
+			.langs button {
+				font: 500 13px/1 var(--sans); letter-spacing: 0.06em;
+				background: none; border: 1px solid transparent; color: var(--muted);
+				padding: 8px 12px; border-radius: 999px; cursor: pointer;
+			}
+			.langs button[aria-pressed="true"] { border-color: var(--line); color: var(--ink); background: var(--card); }
+
+			/* Hero */
+			header { text-align: center; padding: 56px 0 40px; }
+			.flake { color: var(--gold); font-size: 20px; letter-spacing: 0.6em; }
+			.kicker { font: 500 12px/1 var(--sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 20px 0 14px; }
+			h1 { font: 500 clamp(52px, 13vw, 88px)/1 var(--serif); margin: 0; letter-spacing: -0.01em; }
+			h1 .amp { font-style: italic; color: var(--gold); font-weight: 400; }
+			.when { font: italic 400 22px/1.3 var(--serif); color: var(--muted); margin: 18px 0 0; }
+			.intro { max-width: 520px; margin: 28px auto 0; color: var(--ink); }
+
+			hr.rule { border: 0; height: 1px; background: var(--line); margin: 0; }
+			h2 { font: 500 34px/1.1 var(--serif); text-align: center; margin: 0 0 28px; }
+			section { padding: 48px 0; }
+
+			/* Programme */
+			.day { margin-bottom: 36px; }
+			.day:last-child { margin-bottom: 0; }
+			.day-title { font: 600 12px/1 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+			.event { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+			.event .time { font: 500 22px/1.1 var(--serif); color: var(--gold); }
+			.event h3 { font: 500 22px/1.2 var(--serif); margin: 0 0 4px; }
+			.event p { margin: 0; color: var(--muted); font-size: 15px; }
+			.event .on-us { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; }
+
+			/* Form */
+			form { display: grid; gap: 36px; }
+			.field label.title, .field .title { display: block; font: 500 24px/1.2 var(--serif); margin-bottom: 6px; }
+			.hint { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+			input[type="text"], textarea {
+				width: 100%; font: 400 16px/1.4 var(--sans); color: var(--ink);
+				background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+				padding: 14px 16px; outline: none;
+			}
+			input[type="text"]:focus, textarea:focus { border-color: var(--accent); }
+			textarea { min-height: 120px; resize: vertical; }
+
+			.checks { display: grid; gap: 10px; }
+			.check {
+				display: flex; gap: 14px; align-items: flex-start; cursor: pointer;
+				background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+			}
+			.check input { margin: 3px 0 0; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+			.check:has(input:checked) { border-color: var(--accent); }
+			.check strong { display: block; font-weight: 500; }
+			.check span { color: var(--muted); font-size: 14px; }
+
+			.boat-only[hidden] { display: none; }
+
+			/* Segmented choice */
+			.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 5px; margin-bottom: 18px; }
+			.seg button { font: 500 15px/1.2 var(--sans); padding: 12px 10px; border: 0; border-radius: 10px; background: none; color: var(--muted); cursor: pointer; }
+			.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+
+			.counter { font-size: 14px; color: var(--accent); font-weight: 500; margin: 0 0 14px; }
+			.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+			.card {
+				position: relative; display: block; cursor: pointer; text-align: left;
+				background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+				transition: border-color .15s, box-shadow .15s, opacity .15s;
+			}
+			.card input { position: absolute; opacity: 0; pointer-events: none; }
+			.card img { display: block; width: 100%; height: auto; aspect-ratio: 860 / 696; object-fit: cover; background: var(--line); }
+			.card .body { padding: 12px 14px 14px; }
+			.card h4 { font: 500 20px/1.15 var(--serif); margin: 0 0 4px; }
+			.card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.45; }
+			.card .veg { display: inline-block; font-size: 11px; font-weight: 500; color: #4d6b3a; margin-top: 8px; }
+			.card .tick {
+				position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%;
+				background: rgba(255,251,244,.92); border: 1px solid var(--line);
+				display: grid; place-items: center; font-size: 16px; color: transparent;
+			}
+			.card:has(input:checked) { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+			.card:has(input:checked) .tick { background: var(--accent); border-color: var(--accent); color: #fff; }
+			.card:has(input:disabled) { opacity: .45; cursor: not-allowed; }
+			.card:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+			.drinks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+			.error { color: var(--error); font-size: 14px; margin: 10px 0 0; }
+			.error:empty { display: none; }
+
+			.submit {
+				font: 500 17px/1 var(--sans); color: #fff; background: var(--accent);
+				border: 0; border-radius: 999px; padding: 18px 28px; width: 100%; cursor: pointer;
+			}
+			.submit:disabled { opacity: .6; cursor: wait; }
+
+			.thanks { text-align: center; padding: 72px 0; }
+			.thanks h2 { margin-bottom: 12px; }
+			.thanks p { color: var(--muted); max-width: 460px; margin: 0 auto 24px; }
+			.thanks button { font: 500 15px/1 var(--sans); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 12px 20px; cursor: pointer; color: var(--ink); }
+
+			footer { text-align: center; color: var(--muted); padding: 40px 0 56px; font: italic 18px/1.4 var(--serif); }
+
+			@media (max-width: 480px) {
+				.grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+				.card h4 { font-size: 17px; }
+				.card p { font-size: 12px; }
+				.card .body { padding: 10px 11px 12px; }
+				.event { grid-template-columns: 54px 1fr; gap: 12px; }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<nav class="langs" aria-label="Language">
+				<button type="button" data-lang="en">EN</button>
+				<button type="button" data-lang="pt">PT</button>
+				<button type="button" data-lang="de">DE</button>
+				<button type="button" data-lang="zh">中文</button>
+			</nav>
+
+			<header>
+				<div class="flake" aria-hidden="true">✻ ✻ ✻</div>
+				<p class="kicker" data-t="kicker"></p>
+				<h1>João <span class="amp">&amp;</span> Anja</h1>
+				<p class="when" data-t="when"></p>
+				<p class="intro" data-t="intro"></p>
+			</header>
+
+			<hr class="rule" />
+
+			<section aria-labelledby="programme">
+				<h2 id="programme" data-t="programme"></h2>
+
+				<div class="day">
+					<p class="day-title" data-t="day1"></p>
+					<div class="event">
+						<div class="time">11:30</div>
+						<div>
+							<h3 data-t="boatTitle"></h3>
+							<p data-t="boatText"></p>
+						</div>
+					</div>
+					<div class="event">
+						<div class="time">13:00</div>
+						<div>
+							<h3 data-t="tivoliTitle"></h3>
+							<p data-t="tivoliText"></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="day">
+					<p class="day-title" data-t="day2"></p>
+					<div class="event">
+						<div class="time">09:50</div>
+						<div>
+							<h3 data-t="ceremonyTitle"></h3>
+							<p data-t="ceremonyText"></p>
+						</div>
+					</div>
+					<div class="event">
+						<div class="time">11:00</div>
+						<div>
+							<h3 data-t="louisianaTitle"></h3>
+							<p data-t="louisianaText"></p>
+							<span class="on-us" data-t="lunchOnUs"></span>
+						</div>
+					</div>
+					<div class="event">
+						<div class="time">18:30</div>
+						<div>
+							<h3 data-t="dinnerTitle"></h3>
+							<p data-t="dinnerText"></p>
+							<span class="on-us" data-t="dinnerOnUs"></span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<hr class="rule" />
+
+			<section aria-labelledby="rsvp" id="rsvp-section">
+				<h2 id="rsvp" data-t="rsvp"></h2>
+
+				<form id="form" novalidate>
+					<div class="field">
+						<label class="title" for="name" data-t="nameLabel"></label>
+						<input type="text" id="name" name="name" autocomplete="name" />
+						<p class="error" id="err-name"></p>
+					</div>
+
+					<div class="field">
+						<span class="title" data-t="joinLabel"></span>
+						<p class="hint" data-t="joinHint"></p>
+						<div class="checks">
+							<label class="check"><input type="checkbox" name="events" value="boat" /><div><strong data-t="evBoat"></strong><span data-t="evBoatWhen"></span></div></label>
+							<label class="check"><input type="checkbox" name="events" value="ceremony" /><div><strong data-t="evCeremony"></strong><span data-t="evCeremonyWhen"></span></div></label>
+							<label class="check"><input type="checkbox" name="events" value="louisiana" /><div><strong data-t="evLouisiana"></strong><span data-t="evLouisianaWhen"></span></div></label>
+							<label class="check"><input type="checkbox" name="events" value="dinner" /><div><strong data-t="evDinner"></strong><span data-t="evDinnerWhen"></span></div></label>
+							<label class="check"><input type="checkbox" name="none" id="none" /><div><strong data-t="evNone"></strong></div></label>
+						</div>
+						<p class="error" id="err-events"></p>
+					</div>
+
+					<div class="field boat-only" hidden>
+						<span class="title" data-t="sandwichLabel"></span>
+						<p class="hint" data-t="sandwichHint"></p>
+						<div class="seg" role="group">
+							<button type="button" data-mode="singles" aria-pressed="true" data-t="modeSingles"></button>
+							<button type="button" data-mode="bundle" aria-pressed="false" data-t="modeBundle"></button>
+						</div>
+						<div id="singles">
+							<p class="counter" id="counter"></p>
+							<div class="grid" id="singles-grid"></div>
+						</div>
+						<div id="bundles" hidden>
+							<div class="grid" id="bundles-grid"></div>
+						</div>
+						<p class="error" id="err-sandwich"></p>
+					</div>
+
+					<div class="field boat-only" hidden>
+						<span class="title" data-t="drinkLabel"></span>
+						<div class="drinks">
+							<label class="check"><input type="radio" name="drink" value="Hot chocolate" /><div><strong data-t="drinkChoc"></strong></div></label>
+							<label class="check"><input type="radio" name="drink" value="Mulled wine" /><div><strong data-t="drinkWine"></strong></div></label>
+						</div>
+						<p class="error" id="err-drink"></p>
+					</div>
+
+					<div class="field">
+						<label class="title" for="message" data-t="messageLabel"></label>
+						<p class="hint" data-t="messageHint"></p>
+						<textarea id="message" name="message"></textarea>
+					</div>
+
+					<div>
+						<button class="submit" type="submit" data-t="send"></button>
+						<p class="error" id="err-send"></p>
+					</div>
+				</form>
+
+				<div class="thanks" id="thanks" hidden>
+					<div class="flake" aria-hidden="true">✻</div>
+					<h2 data-t="thanksTitle"></h2>
+					<p data-t="thanksText"></p>
+					<button type="button" id="again" data-t="again"></button>
+				</div>
+			</section>
+
+			<footer>João &amp; Anja · København 2026</footer>
+		</div>
+
+		<script src="menu.js"></script>
+		<script>
+			// Google Apps Script web app URL that appends each answer to the Sheet.
+			const SHEET_URL = "https://script.google.com/macros/s/AKfycbwwGVBEELIPh3d2-13TwAM3jXaPpz78St-8Ax8OeUg91kvfREG9CZcKpcj0Yz-9YaH4/exec";
+
+			const T = {
+				en: {
+					kicker: "We're getting married",
+					when: "Copenhagen · 8 and 9 December 2026",
+					intro: "We would love to celebrate with you. Here is the plan for the two days. Please fill in the form below so we can get everything ready.",
+					programme: "The plan",
+					day1: "Tuesday, 8 December",
+					boatTitle: "Heated winter boat",
+					boatText: "From 11:30 to 13:00. Pick up at Gammel Strand. Smørrebrød and a hot chocolate or mulled wine on board.",
+					tivoliTitle: "Tivoli Gardens",
+					tivoliText: "Afterwards we suggest a visit to Tivoli, at its most magical in winter.",
+					day2: "Wednesday, 9 December",
+					ceremonyTitle: "Ceremony at City Hall",
+					ceremonyText: "Copenhagen City Hall. The ceremony takes around 15 minutes.",
+					louisianaTitle: "Louisiana Museum",
+					louisianaText: "We meet at Rådhuspladsen station and go to the Louisiana Museum of Modern Art together. There is time in between to stop by the hotel.",
+					lunchOnUs: "Lunch is on us",
+					dinnerTitle: "Dinner at Væxt",
+					dinnerText: "We finish the day with dinner together.",
+					dinnerOnUs: "Dinner is on us",
+					rsvp: "Your answer",
+					nameLabel: "Your name",
+					joinLabel: "Which parts will you join?",
+					joinHint: "Tick everything you can come to.",
+					evBoat: "Winter boat",
+					evBoatWhen: "Tue 8 Dec, 11:30, Gammel Strand",
+					evCeremony: "Ceremony",
+					evCeremonyWhen: "Wed 9 Dec, 09:50, City Hall",
+					evLouisiana: "Louisiana and lunch",
+					evLouisianaWhen: "Wed 9 Dec, 11:00, Rådhuspladsen station",
+					evDinner: "Dinner at Væxt",
+					evDinnerWhen: "Wed 9 Dec, 18:30",
+					evNone: "Sadly, I can't make it",
+					sandwichLabel: "Your smørrebrød for the boat",
+					sandwichHint: "From Aamanns. Choose 3 open sandwiches, or one set of 3.",
+					modeSingles: "Choose 3",
+					modeBundle: "A set of 3",
+					counter: (n) => `${n} of 3 chosen`,
+					veg: "Vegetarian",
+					drinkLabel: "Your drink on board",
+					drinkChoc: "Hot chocolate",
+					drinkWine: "Mulled wine",
+					messageLabel: "A message for us",
+					messageHint: "Optional. Wishes, questions, anything.",
+					send: "Send",
+					sending: "Sending…",
+					errName: "Please write your name.",
+					errEvents: "Please tick at least one option.",
+					errSingles: "Please choose 3 sandwiches.",
+					errBundle: "Please choose a set.",
+					errDrink: "Please choose a drink.",
+					errSend: "Something went wrong. Please try again.",
+					thanksTitle: "Thank you!",
+					thanksText: "We got your answer and can't wait to see you in Copenhagen.",
+					thanksTextNo: "Thank you for letting us know. We will miss you.",
+					again: "Answer for someone else",
+				},
+				pt: {
+					kicker: "Vamos casar",
+					when: "Copenhaga · 8 e 9 de dezembro de 2026",
+					intro: "Adorávamos celebrar convosco. Aqui está o plano para os dois dias. Preenche o formulário abaixo para podermos preparar tudo.",
+					programme: "O plano",
+					day1: "Terça-feira, 8 de dezembro",
+					boatTitle: "Barco de inverno aquecido",
+					boatText: "Das 11:30 às 13:00. Partida em Gammel Strand. Smørrebrød e um chocolate quente ou vinho quente a bordo.",
+					tivoliTitle: "Jardins de Tivoli",
+					tivoliText: "A seguir sugerimos uma visita ao Tivoli, que no inverno é mágico.",
+					day2: "Quarta-feira, 9 de dezembro",
+					ceremonyTitle: "Cerimónia na Câmara Municipal",
+					ceremonyText: "Câmara Municipal de Copenhaga. A cerimónia dura cerca de 15 minutos.",
+					louisianaTitle: "Museu Louisiana",
+					louisianaText: "Encontramo-nos na estação de Rådhuspladsen e vamos juntos ao Louisiana Museum of Modern Art. Há tempo pelo meio para passar pelo hotel.",
+					lunchOnUs: "O almoço é por nossa conta",
+					dinnerTitle: "Jantar no Væxt",
+					dinnerText: "Terminamos o dia com um jantar juntos.",
+					dinnerOnUs: "O jantar é por nossa conta",
+					rsvp: "A tua resposta",
+					nameLabel: "O teu nome",
+					joinLabel: "Em que momentos vais estar?",
+					joinHint: "Marca tudo o que conseguires.",
+					evBoat: "Barco de inverno",
+					evBoatWhen: "Ter 8 dez, 11:30, Gammel Strand",
+					evCeremony: "Cerimónia",
+					evCeremonyWhen: "Qua 9 dez, 09:50, Câmara Municipal",
+					evLouisiana: "Louisiana e almoço",
+					evLouisianaWhen: "Qua 9 dez, 11:00, estação de Rådhuspladsen",
+					evDinner: "Jantar no Væxt",
+					evDinnerWhen: "Qua 9 dez, 18:30",
+					evNone: "Infelizmente não posso ir",
+					sandwichLabel: "O teu smørrebrød para o barco",
+					sandwichHint: "Da Aamanns. Escolhe 3 sanduíches abertas, ou um conjunto de 3.",
+					modeSingles: "Escolher 3",
+					modeBundle: "Um conjunto de 3",
+					counter: (n) => `${n} de 3 escolhidas`,
+					veg: "Vegetariano",
+					drinkLabel: "A tua bebida a bordo",
+					drinkChoc: "Chocolate quente",
+					drinkWine: "Vinho quente",
+					messageLabel: "Uma mensagem para nós",
+					messageHint: "Opcional. Desejos, perguntas, o que quiseres.",
+					send: "Enviar",
+					sending: "A enviar…",
+					errName: "Escreve o teu nome, por favor.",
+					errEvents: "Marca pelo menos uma opção.",
+					errSingles: "Escolhe 3 sanduíches, por favor.",
+					errBundle: "Escolhe um conjunto, por favor.",
+					errDrink: "Escolhe uma bebida, por favor.",
+					errSend: "Algo correu mal. Tenta outra vez.",
+					thanksTitle: "Obrigado!",
+					thanksText: "Recebemos a tua resposta e mal podemos esperar para te ver em Copenhaga.",
+					thanksTextNo: "Obrigado por nos avisares. Vamos sentir a tua falta.",
+					again: "Responder por outra pessoa",
+				},
+				de: {
+					kicker: "Wir heiraten",
+					when: "Kopenhagen · 8. und 9. Dezember 2026",
+					intro: "Wir würden uns sehr freuen, mit euch zu feiern. Hier ist der Plan für die zwei Tage. Bitte füllt das Formular unten aus, damit wir alles vorbereiten können.",
+					programme: "Der Plan",
+					day1: "Dienstag, 8. Dezember",
+					boatTitle: "Beheiztes Winterboot",
+					boatText: "Von 11:30 bis 13:00. Abfahrt am Gammel Strand. An Bord gibt es Smørrebrød und heiße Schokolade oder Glühwein.",
+					tivoliTitle: "Tivoli",
+					tivoliText: "Danach empfehlen wir einen Besuch im Tivoli, im Winter besonders zauberhaft.",
+					day2: "Mittwoch, 9. Dezember",
+					ceremonyTitle: "Trauung im Rathaus",
+					ceremonyText: "Rathaus Kopenhagen. Die Trauung dauert etwa 15 Minuten.",
+					louisianaTitle: "Louisiana Museum",
+					louisianaText: "Wir treffen uns am Bahnhof Rådhuspladsen und fahren gemeinsam zum Louisiana Museum of Modern Art. Dazwischen ist Zeit, kurz ins Hotel zu gehen.",
+					lunchOnUs: "Das Mittagessen geht auf uns",
+					dinnerTitle: "Abendessen im Væxt",
+					dinnerText: "Wir lassen den Tag mit einem gemeinsamen Abendessen ausklingen.",
+					dinnerOnUs: "Das Abendessen geht auf uns",
+					rsvp: "Deine Antwort",
+					nameLabel: "Dein Name",
+					joinLabel: "Wobei bist du dabei?",
+					joinHint: "Kreuze alles an, wozu du kommen kannst.",
+					evBoat: "Winterboot",
+					evBoatWhen: "Di 8. Dez, 11:30, Gammel Strand",
+					evCeremony: "Trauung",
+					evCeremonyWhen: "Mi 9. Dez, 09:50, Rathaus",
+					evLouisiana: "Louisiana und Mittagessen",
+					evLouisianaWhen: "Mi 9. Dez, 11:00, Bahnhof Rådhuspladsen",
+					evDinner: "Abendessen im Væxt",
+					evDinnerWhen: "Mi 9. Dez, 18:30",
+					evNone: "Leider kann ich nicht kommen",
+					sandwichLabel: "Dein Smørrebrød für das Boot",
+					sandwichHint: "Von Aamanns. Wähle 3 belegte Brote oder ein Set mit 3.",
+					modeSingles: "3 auswählen",
+					modeBundle: "Ein Set mit 3",
+					counter: (n) => `${n} von 3 ausgewählt`,
+					veg: "Vegetarisch",
+					drinkLabel: "Dein Getränk an Bord",
+					drinkChoc: "Heiße Schokolade",
+					drinkWine: "Glühwein",
+					messageLabel: "Eine Nachricht für uns",
+					messageHint: "Optional. Wünsche, Fragen, alles.",
+					send: "Senden",
+					sending: "Wird gesendet…",
+					errName: "Bitte gib deinen Namen ein.",
+					errEvents: "Bitte kreuze mindestens eine Option an.",
+					errSingles: "Bitte wähle 3 Brote aus.",
+					errBundle: "Bitte wähle ein Set aus.",
+					errDrink: "Bitte wähle ein Getränk aus.",
+					errSend: "Etwas ist schiefgelaufen. Bitte versuche es noch einmal.",
+					thanksTitle: "Danke!",
+					thanksText: "Wir haben deine Antwort und freuen uns riesig, dich in Kopenhagen zu sehen.",
+					thanksTextNo: "Danke, dass du Bescheid gibst. Wir werden dich vermissen.",
+					again: "Für jemand anderen antworten",
+				},
+				zh: {
+					kicker: "我们要结婚了",
+					when: "哥本哈根 · 2026年12月8日和9日",
+					intro: "我们很希望与您一起庆祝。以下是两天的安排。请填写下面的表格，方便我们做好准备。",
+					programme: "行程安排",
+					day1: "12月8日 星期二",
+					boatTitle: "暖气冬季游船",
+					boatText: "11:30 至 13:00，在 Gammel Strand 上船。船上提供丹麦开放式三明治，以及热巧克力或热红酒。",
+					tivoliTitle: "趣伏里公园",
+					tivoliText: "之后推荐去趣伏里公园逛逛，冬天的它格外美丽。",
+					day2: "12月9日 星期三",
+					ceremonyTitle: "市政厅婚礼仪式",
+					ceremonyText: "哥本哈根市政厅，仪式大约15分钟。",
+					louisianaTitle: "路易斯安那博物馆",
+					louisianaText: "我们在 Rådhuspladsen 车站集合，一起前往路易斯安那现代艺术博物馆。中间有时间可以回酒店。",
+					lunchOnUs: "午餐由我们请客",
+					dinnerTitle: "Væxt 晚餐",
+					dinnerText: "最后我们一起共进晚餐。",
+					dinnerOnUs: "晚餐由我们请客",
+					rsvp: "您的回复",
+					nameLabel: "您的姓名",
+					joinLabel: "您会参加哪些活动？",
+					joinHint: "请勾选所有您能参加的活动。",
+					evBoat: "冬季游船",
+					evBoatWhen: "12月8日 星期二 11:30，Gammel Strand",
+					evCeremony: "婚礼仪式",
+					evCeremonyWhen: "12月9日 星期三 09:50，市政厅",
+					evLouisiana: "路易斯安那博物馆和午餐",
+					evLouisianaWhen: "12月9日 星期三 11:00，Rådhuspladsen 车站",
+					evDinner: "Væxt 晚餐",
+					evDinnerWhen: "12月9日 星期三 18:30",
+					evNone: "很遗憾，我无法参加",
+					sandwichLabel: "您在船上的开放式三明治",
+					sandwichHint: "来自 Aamanns。请选择3份三明治，或1个三件套。",
+					modeSingles: "选3份",
+					modeBundle: "1个三件套",
+					counter: (n) => `已选 ${n} / 3`,
+					veg: "素食",
+					drinkLabel: "您在船上的饮品",
+					drinkChoc: "热巧克力",
+					drinkWine: "热红酒",
+					messageLabel: "给我们的留言",
+					messageHint: "选填。祝福、问题，什么都可以。",
+					send: "提交",
+					sending: "正在提交…",
+					errName: "请填写您的姓名。",
+					errEvents: "请至少勾选一项。",
+					errSingles: "请选择3份三明治。",
+					errBundle: "请选择一个三件套。",
+					errDrink: "请选择一种饮品。",
+					errSend: "出了点问题，请再试一次。",
+					thanksTitle: "谢谢！",
+					thanksText: "我们已收到您的回复，期待在哥本哈根见到您！",
+					thanksTextNo: "谢谢您告诉我们，我们会想念您的。",
+					again: "替其他人填写",
+				},
+			};
+
+			const LANGS = Object.keys(T);
+			const $ = (s) => document.querySelector(s);
+			const $$ = (s) => [...document.querySelectorAll(s)];
+
+			let lang = pickLang();
+			let mode = "singles";
+
+			function pickLang() {
+				try {
+					const saved = localStorage.getItem("wedding-lang");
+					if (LANGS.includes(saved)) return saved;
+				} catch (e) {}
+				for (const l of navigator.languages || [navigator.language || ""]) {
+					const code = l.toLowerCase().slice(0, 2);
+					if (LANGS.includes(code)) return code;
+				}
+				return "en";
+			}
+
+			function card(item, type) {
+				const [title, desc] = item[lang];
+				return `<label class="card">
+					<input type="${type}" name="${type === "radio" ? "bundle" : "single"}" value="${item.id}" />
+					<img src="img/${item.id}.jpg" alt="" loading="lazy" width="860" height="696" />
+					<span class="tick" aria-hidden="true">✓</span>
+					<div class="body">
+						<h4>${title}</h4>
+						<p>${desc}</p>
+						${item.veg ? `<span class="veg">✿ ${T[lang].veg}</span>` : ""}
+					</div>
+				</label>`;
+			}
+
+			function renderMenu() {
+				const picked = new Set($$('input[name="single"]:checked').map((i) => i.value));
+				const bundle = $('input[name="bundle"]:checked')?.value;
+				$("#singles-grid").innerHTML = MENU.singles.map((i) => card(i, "checkbox")).join("");
+				$("#bundles-grid").innerHTML = MENU.bundles.map((i) => card(i, "radio")).join("");
+				$$('input[name="single"]').forEach((i) => (i.checked = picked.has(i.value)));
+				$$('input[name="bundle"]').forEach((i) => (i.checked = i.value === bundle));
+				updateSingles();
+			}
+
+			function applyLang() {
+				const t = T[lang];
+				document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang;
+				$$("[data-t]").forEach((el) => {
+					const v = t[el.dataset.t];
+					if (typeof v === "string") el.textContent = v;
+				});
+				$$(".langs button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+				renderMenu();
+				clearErrors();
+			}
+
+			function updateSingles() {
+				const checked = $$('input[name="single"]:checked').length;
+				$("#counter").textContent = T[lang].counter(checked);
+				$$('input[name="single"]').forEach((i) => (i.disabled = !i.checked && checked >= 3));
+			}
+
+			function setMode(m) {
+				mode = m;
+				$$(".seg button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mode === m));
+				$("#singles").hidden = m !== "singles";
+				$("#bundles").hidden = m !== "bundle";
+				$("#err-sandwich").textContent = "";
+			}
+
+			function updateEvents() {
+				const none = $("#none").checked;
+				$$('input[name="events"]').forEach((i) => {
+					if (none) i.checked = false;
+					i.disabled = none;
+				});
+				const boat = $('input[name="events"][value="boat"]').checked;
+				$$(".boat-only").forEach((el) => (el.hidden = !boat));
+			}
+
+			function clearErrors() {
+				$$(".error").forEach((e) => (e.textContent = ""));
+			}
+
+			function validate() {
+				const t = T[lang];
+				clearErrors();
+				let first = null;
+				const fail = (id, msg, el) => {
+					$(id).textContent = msg;
+					first ||= el;
+				};
+				if (!$("#name").value.trim()) fail("#err-name", t.errName, $("#name"));
+				const events = $$('input[name="events"]:checked').map((i) => i.value);
+				if (!events.length && !$("#none").checked) fail("#err-events", t.errEvents, $(".checks"));
+				if (events.includes("boat")) {
+					if (mode === "singles" && $$('input[name="single"]:checked').length !== 3)
+						fail("#err-sandwich", t.errSingles, $(".seg"));
+					if (mode === "bundle" && !$('input[name="bundle"]:checked'))
+						fail("#err-sandwich", t.errBundle, $(".seg"));
+					if (!$('input[name="drink"]:checked')) fail("#err-drink", t.errDrink, $(".drinks"));
+				}
+				if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
+				return !first;
+			}
+
+			function payload() {
+				const events = $$('input[name="events"]:checked').map((i) => i.value);
+				const boat = events.includes("boat");
+				const daName = (list, id) => list.find((i) => i.id === id).da;
+				let sandwiches = "";
+				if (boat && mode === "singles")
+					sandwiches = $$('input[name="single"]:checked').map((i) => daName(MENU.singles, i.value)).join(", ");
+				if (boat && mode === "bundle")
+					sandwiches = daName(MENU.bundles, $('input[name="bundle"]:checked').value) + " (set)";
+				const yes = (e) => (events.includes(e) ? "yes" : "no");
+				return {
+					name: $("#name").value.trim(),
+					coming: events.length ? "yes" : "no",
+					boat: yes("boat"),
+					ceremony: yes("ceremony"),
+					louisiana: yes("louisiana"),
+					dinner: yes("dinner"),
+					sandwiches,
+					drink: boat ? $('input[name="drink"]:checked').value : "",
+					message: $("#message").value.trim(),
+					language: lang,
+				};
+			}
+
+			async function submit(e) {
+				e.preventDefault();
+				if (!validate()) return;
+				const data = payload();
+				const btn = $(".submit");
+				btn.disabled = true;
+				btn.textContent = T[lang].sending;
+				try {
+					if (SHEET_URL) {
+						// Apps Script doesn't send CORS headers, so the response can't be read.
+						await fetch(SHEET_URL, { method: "POST", mode: "no-cors", body: new URLSearchParams(data) });
+					} else {
+						console.warn("SHEET_URL is not set, answer not saved:", data);
+					}
+					$("#form").hidden = true;
+					$("#thanks").hidden = false;
+					$("#thanks p").textContent = data.coming === "yes" ? T[lang].thanksText : T[lang].thanksTextNo;
+					$("#rsvp-section").scrollIntoView({ behavior: "smooth" });
+				} catch (err) {
+					$("#err-send").textContent = T[lang].errSend;
+				} finally {
+					btn.disabled = false;
+					btn.textContent = T[lang].send;
+				}
+			}
+
+			function reset() {
+				$("#form").reset();
+				setMode("singles");
+				updateEvents();
+				updateSingles();
+				$("#thanks").hidden = true;
+				$("#form").hidden = false;
+				$("#name").focus();
+			}
+
+			$$(".langs button").forEach((b) =>
+				b.addEventListener("click", () => {
+					lang = b.dataset.lang;
+					try { localStorage.setItem("wedding-lang", lang); } catch (e) {}
+					applyLang();
+				})
+			);
+			$$(".seg button").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.mode)));
+			$("#singles-grid").addEventListener("change", () => {
+				updateSingles();
+				$("#err-sandwich").textContent = "";
+			});
+			$("#bundles-grid").addEventListener("change", () => ($("#err-sandwich").textContent = ""));
+			$(".checks").addEventListener("change", () => {
+				updateEvents();
+				$("#err-events").textContent = "";
+			});
+			$(".drinks").addEventListener("change", () => ($("#err-drink").textContent = ""));
+			$("#name").addEventListener("input", () => ($("#err-name").textContent = ""));
+			$("#form").addEventListener("submit", submit);
+			$("#again").addEventListener("click", reset);
+
+			applyLang();
+			updateEvents();
+		</script>
+	</body>
+</html>
