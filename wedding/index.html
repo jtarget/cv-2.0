@@ -72,6 +72,10 @@
 			.event .time { font: 500 22px/1.1 var(--serif); color: var(--gold); }
 			.event h3 { font: 500 22px/1.2 var(--serif); margin: 0 0 4px; }
 			.event p { margin: 0; color: var(--muted); font-size: 15px; }
+			.event .maps { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+			.event .map { font-size: 14px; font-weight: 500; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--line); }
+			.event .map::before { content: "📍 "; }
+			.event .map:hover { border-color: var(--accent); }
 			.event .on-us { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; }
 
 			/* Form */
@@ -182,6 +186,7 @@
 						<div>
 							<h3 data-t="boatTitle"></h3>
 							<p data-t="boatText"></p>
+							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Gammel%20Strand%2C%201202%20K%C3%B8benhavn" target="_blank" rel="noopener">Gammel Strand</a></p>
 							<span class="on-us" data-t="boatOnUs"></span>
 						</div>
 					</div>
@@ -190,6 +195,7 @@
 						<div>
 							<h3 data-t="tivoliTitle"></h3>
 							<p data-t="tivoliText"></p>
+							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Tivoli%20Gardens%2C%20Vesterbrogade%203%2C%201630%20K%C3%B8benhavn" target="_blank" rel="noopener">Tivoli</a></p>
 						</div>
 					</div>
 				</div>
@@ -201,6 +207,7 @@
 						<div>
 							<h3 data-t="ceremonyTitle"></h3>
 							<p data-t="ceremonyText"></p>
+							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=K%C3%B8benhavns%20R%C3%A5dhus%2C%20R%C3%A5dhuspladsen%201%2C%201550%20K%C3%B8benhavn" target="_blank" rel="noopener">Københavns Rådhus</a></p>
 						</div>
 					</div>
 					<div class="event">
@@ -208,14 +215,16 @@
 						<div>
 							<h3 data-t="louisianaTitle"></h3>
 							<p data-t="louisianaText"></p>
+							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=R%C3%A5dhuspladsen%20Station%2C%20K%C3%B8benhavn" target="_blank" rel="noopener">Rådhuspladsen station</a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Louisiana%20Museum%20of%20Modern%20Art%2C%20Gammel%20Strandvej%2013%2C%203050%20Humleb%C3%A6k" target="_blank" rel="noopener">Louisiana</a></p>
 							<span class="on-us" data-t="lunchOnUs"></span>
 						</div>
 					</div>
 					<div class="event">
-						<div class="time">18:30</div>
+						<div class="time">20:45</div>
 						<div>
 							<h3 data-t="dinnerTitle"></h3>
 							<p data-t="dinnerText"></p>
+							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=V%C3%A6kst%2C%20Sankt%20Peders%20Str%C3%A6de%2034%2C%201453%20K%C3%B8benhavn" target="_blank" rel="noopener">Vækst</a></p>
 							<span class="on-us" data-t="dinnerOnUs"></span>
 						</div>
 					</div>
@@ -319,7 +328,7 @@
 					louisianaTitle: "Louisiana Museum",
 					louisianaText: "We meet at Rådhuspladsen station and go to the Louisiana Museum of Modern Art together. There is time in between to stop by the hotel.",
 					lunchOnUs: "Lunch is on us",
-					dinnerTitle: "Dinner at Væxt",
+					dinnerTitle: "Dinner at Vækst",
 					dinnerText: "We finish the day with dinner together.",
 					dinnerOnUs: "Dinner is on us",
 					rsvp: "Your answer",
@@ -332,8 +341,8 @@
 					evCeremonyWhen: "Wed 9 Dec, 09:50, City Hall",
 					evLouisiana: "Louisiana and lunch",
 					evLouisianaWhen: "Wed 9 Dec, 11:00, Rådhuspladsen station",
-					evDinner: "Dinner at Væxt",
-					evDinnerWhen: "Wed 9 Dec, 18:30",
+					evDinner: "Dinner at Vækst",
+					evDinnerWhen: "Wed 9 Dec, 20:45",
 					evNone: "Sadly, I can't make it",
 					sandwichLabel: "Your smørrebrød for the boat",
 					sandwichHint: "From Aamanns. Choose 3 open sandwiches, or one set of 3.",
@@ -376,7 +385,7 @@
 					louisianaTitle: "Museu Louisiana",
 					louisianaText: "Encontramo-nos na estação de Rådhuspladsen e vamos juntos ao Louisiana Museum of Modern Art. Há tempo pelo meio para passar pelo hotel.",
 					lunchOnUs: "O almoço é por nossa conta",
-					dinnerTitle: "Jantar no Væxt",
+					dinnerTitle: "Jantar no Vækst",
 					dinnerText: "Terminamos o dia com um jantar juntos.",
 					dinnerOnUs: "O jantar é por nossa conta",
 					rsvp: "A tua resposta",
@@ -389,8 +398,8 @@
 					evCeremonyWhen: "Qua 9 dez, 09:50, Câmara Municipal",
 					evLouisiana: "Louisiana e almoço",
 					evLouisianaWhen: "Qua 9 dez, 11:00, estação de Rådhuspladsen",
-					evDinner: "Jantar no Væxt",
-					evDinnerWhen: "Qua 9 dez, 18:30",
+					evDinner: "Jantar no Vækst",
+					evDinnerWhen: "Qua 9 dez, 20:45",
 					evNone: "Infelizmente não posso ir",
 					sandwichLabel: "O teu smørrebrød para o barco",
 					sandwichHint: "Da Aamanns. Escolhe 3 sanduíches abertas, ou um conjunto de 3.",
@@ -433,7 +442,7 @@
 					louisianaTitle: "Louisiana Museum",
 					louisianaText: "Wir treffen uns am Bahnhof Rådhuspladsen und fahren gemeinsam zum Louisiana Museum of Modern Art. Dazwischen ist Zeit, kurz ins Hotel zu gehen.",
 					lunchOnUs: "Das Mittagessen geht auf uns",
-					dinnerTitle: "Abendessen im Væxt",
+					dinnerTitle: "Abendessen im Vækst",
 					dinnerText: "Wir lassen den Tag mit einem gemeinsamen Abendessen ausklingen.",
 					dinnerOnUs: "Das Abendessen geht auf uns",
 					rsvp: "Deine Antwort",
@@ -446,8 +455,8 @@
 					evCeremonyWhen: "Mi 9. Dez, 09:50, Rathaus",
 					evLouisiana: "Louisiana und Mittagessen",
 					evLouisianaWhen: "Mi 9. Dez, 11:00, Bahnhof Rådhuspladsen",
-					evDinner: "Abendessen im Væxt",
-					evDinnerWhen: "Mi 9. Dez, 18:30",
+					evDinner: "Abendessen im Vækst",
+					evDinnerWhen: "Mi 9. Dez, 20:45",
 					evNone: "Leider kann ich nicht kommen",
 					sandwichLabel: "Dein Smørrebrød für das Boot",
 					sandwichHint: "Von Aamanns. Wähle 3 belegte Brote oder ein Set mit 3.",
@@ -490,7 +499,7 @@
 					louisianaTitle: "路易斯安那博物馆",
 					louisianaText: "我们在 Rådhuspladsen 车站集合，一起前往路易斯安那现代艺术博物馆。中间有时间可以回酒店。",
 					lunchOnUs: "午餐由我们请客",
-					dinnerTitle: "Væxt 晚餐",
+					dinnerTitle: "Vækst 晚餐",
 					dinnerText: "最后我们一起共进晚餐。",
 					dinnerOnUs: "晚餐由我们请客",
 					rsvp: "您的回复",
@@ -503,8 +512,8 @@
 					evCeremonyWhen: "12月9日 星期三 09:50，市政厅",
 					evLouisiana: "路易斯安那博物馆和午餐",
 					evLouisianaWhen: "12月9日 星期三 11:00，Rådhuspladsen 车站",
-					evDinner: "Væxt 晚餐",
-					evDinnerWhen: "12月9日 星期三 18:30",
+					evDinner: "Vækst 晚餐",
+					evDinnerWhen: "12月9日 星期三 20:45",
 					evNone: "很遗憾，我无法参加",
 					sandwichLabel: "您在船上的开放式三明治",
 					sandwichHint: "来自 Aamanns。请选择3份三明治，或1个三件套。",
