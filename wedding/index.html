@@ -102,7 +102,7 @@
 			}
 			h1 .amp {
 				font: italic 400 1.04em/0 var(--serif); letter-spacing: 0; color: var(--indigo);
-				margin: 0 .04em 0 -.01em;
+				margin: 0 -.0225em 0 .0525em; /* optical spacing: the J carries extra left sidebearing */
 			}
 			.intro {
 				grid-row: 4; grid-column: 1 / -1; margin: 40px 0 0; max-width: 24ch;
@@ -392,6 +392,7 @@
 				.invite { min-height: min(66svh, 580px); padding: 28px 0 56px; }
 				.invite::before { top: -60px; right: -320px; }
 				h1 .n1 { display: block; }
+				h1 .amp { margin-left: .02em; } /* the & starts the second line: align it with the A */
 				section { padding: 32px 0 64px; }
 				section > h2 { margin-bottom: 44px; }
 				.event { grid-template-columns: 1fr; padding: 24px 0; }
