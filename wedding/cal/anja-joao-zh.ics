@@ -6,7 +6,7 @@ METHOD:PUBLISH
 X-WR-CALNAME:Anja & João
 BEGIN:VEVENT
 UID:boat-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T210518Z
+DTSTAMP:20261027T212008Z
 DTSTART:20261208T103000Z
 DTEND:20261208T123000Z
 SUMMARY:私人暖气冬季游船 · Anja & João
@@ -18,7 +18,7 @@ URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:tivoli-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T210518Z
+DTSTAMP:20261027T212008Z
 DTSTART:20261208T124500Z
 DTEND:20261208T144500Z
 SUMMARY:趣伏里公园 · Anja & João
@@ -30,7 +30,7 @@ URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:ceremony-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T210518Z
+DTSTAMP:20261027T212008Z
 DTSTART:20261209T083500Z
 DTEND:20261209T090500Z
 SUMMARY:市政厅婚礼仪式 · Anja & João
@@ -42,7 +42,7 @@ URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:louisiana-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T210518Z
+DTSTAMP:20261027T212008Z
 DTSTART:20261209T100000Z
 DTEND:20261209T140000Z
 SUMMARY:路易斯安那博物馆 · Anja & João
@@ -56,11 +56,11 @@ URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:dinner-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T210518Z
+DTSTAMP:20261027T212008Z
 DTSTART:20261209T164500Z
 DTEND:20261209T194500Z
-SUMMARY:Vækst 晚餐 · Anja & João
-LOCATION:Vækst\, Sankt Peders Stræde 34\, 1453 København
+SUMMARY:Cofoco 晚餐 · Anja & João
+LOCATION:Restaurant Cofoco\, Abel Cathrines Gade 7\, 1654 København
 DESCRIPTION:一起共进晚餐，庆祝这一天。\n晚餐我们请客\n
  结束时间为大致估计。\nhttps://joaomira.com/wedding/
 URL:https://joaomira.com/wedding/
