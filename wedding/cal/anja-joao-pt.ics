@@ -6,19 +6,20 @@ METHOD:PUBLISH
 X-WR-CALNAME:Anja & João
 BEGIN:VEVENT
 UID:boat-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T212505Z
+DTSTAMP:20261027T215632Z
 DTSTART:20261208T103000Z
 DTEND:20261208T123000Z
 SUMMARY:Barco de inverno privado e aquecido · Anja & João
 LOCATION:Café Lille Fugl\, Gammel Strand 48\, 1202 København
-DESCRIPTION:Encontro no Café Lille Fugl 11:30.\nDas 12:00 às 13:30\, só 
- para nós. Almoço a bordo: smørrebrød e uma bebida.\nBarco e almoço po
- r nossa conta\nhttps://joaomira.com/wedding/
+DESCRIPTION:11:30 Encontro no Café Lille Fugl. Encontramo-nos aqui e vamos
+  a pé juntos até ao cais do barco em Gammel Strand.\nDas 12:00 às 13:30
+ \, só para nós. Almoço a bordo: smørrebrød e uma bebida.\nBarco e alm
+ oço por nossa conta\nhttps://joaomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:tivoli-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T212505Z
+DTSTAMP:20261027T215632Z
 DTSTART:20261208T124500Z
 DTEND:20261208T144500Z
 SUMMARY:Jardins de Tivoli · Anja & João
@@ -30,7 +31,7 @@ URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:ceremony-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T212505Z
+DTSTAMP:20261027T215632Z
 DTSTART:20261209T083500Z
 DTEND:20261209T090500Z
 SUMMARY:Cerimónia na Câmara Municipal · Anja & João
@@ -43,7 +44,7 @@ URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:louisiana-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T212505Z
+DTSTAMP:20261027T215632Z
 DTSTART:20261209T100000Z
 DTEND:20261209T140000Z
 SUMMARY:Museu Louisiana · Anja & João
@@ -58,7 +59,7 @@ URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:dinner-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T212505Z
+DTSTAMP:20261027T215632Z
 DTSTART:20261209T170000Z
 DTEND:20261209T200000Z
 SUMMARY:Jantar no Cofoco · Anja & João
