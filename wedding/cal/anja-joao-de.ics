@@ -1,0 +1,71 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//joaomira.com//Anja & João//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Anja & João
+BEGIN:VEVENT
+UID:boat-2026@anja-joao.joaomira.com
+DTSTAMP:20261027T210518Z
+DTSTART:20261208T103000Z
+DTEND:20261208T123000Z
+SUMMARY:Privates beheiztes Winterboot · Anja & João
+LOCATION:Café Lille Fugl\, Gammel Strand 48\, 1202 København
+DESCRIPTION:Treffpunkt Café Lille Fugl 11:30.\nVon 12:00 bis 13:30\, nur f
+ ür uns. Mittagessen an Bord: Smørrebrød und ein Getränk.\nBoot und Mit
+ tagessen auf uns\nhttps://joaomira.com/wedding/
+URL:https://joaomira.com/wedding/
+END:VEVENT
+BEGIN:VEVENT
+UID:tivoli-2026@anja-joao.joaomira.com
+DTSTAMP:20261027T210518Z
+DTSTART:20261208T124500Z
+DTEND:20261208T144500Z
+SUMMARY:Tivoli · Anja & João
+LOCATION:Tivoli\, Vesterbrogade 3\, 1630 København
+DESCRIPTION:Wir ziehen gemeinsam weiter\, ohne festes Ende. Zum Abendessen 
+ im Food Court zu bleiben ist optional.\nDie Endzeit ist ungefähr.\nhttps:
+ //joaomira.com/wedding/
+URL:https://joaomira.com/wedding/
+END:VEVENT
+BEGIN:VEVENT
+UID:ceremony-2026@anja-joao.joaomira.com
+DTSTAMP:20261027T210518Z
+DTSTART:20261209T083500Z
+DTEND:20261209T090500Z
+SUMMARY:Trauung im Rathaus · Anja & João
+LOCATION:Københavns Rådhus\, Rådhuspladsen 1\, 1550 København
+DESCRIPTION:Sei bis 09:35 drinnen. Folge vom Haupteingang den Herzen am Bod
+ en durch die große Halle bis zum Wartebereich. Die Trauung findet im Hoch
+ zeitssaal statt und dauert etwa 15 Minuten. Danach bleibt Zeit\, kurz ins 
+ Hotel zu gehen.\nhttps://joaomira.com/wedding/
+URL:https://joaomira.com/wedding/
+END:VEVENT
+BEGIN:VEVENT
+UID:louisiana-2026@anja-joao.joaomira.com
+DTSTAMP:20261027T210518Z
+DTSTART:20261209T100000Z
+DTEND:20261209T140000Z
+SUMMARY:Louisiana Museum · Anja & João
+LOCATION:Rådhuspladsen St.\, 1550 København
+DESCRIPTION:Treffpunkt am Haupteingang der Metrostation Rådhuspladsen\, ge
+ genüber dem Rathausturm. Von dort fahren wir gemeinsam zum Museum.\nEintr
+ itt und Mittagessen auf uns\nTipp: Lade vorab die Rejsekort App herunter u
+ nd hinterlege eine Zahlungskarte\, damit du dich in Metro und Zügen ein u
+ nd auschecken kannst.\nDie Endzeit ist ungefähr.\nhttps://joaomira.com/we
+ dding/
+URL:https://joaomira.com/wedding/
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-2026@anja-joao.joaomira.com
+DTSTAMP:20261027T210518Z
+DTSTART:20261209T164500Z
+DTEND:20261209T194500Z
+SUMMARY:Abendessen im Vækst · Anja & João
+LOCATION:Vækst\, Sankt Peders Stræde 34\, 1453 København
+DESCRIPTION:Gemeinsames Abendessen\, um zu feiern und den Tag ausklingen zu
+  lassen.\nAbendessen auf uns\nDie Endzeit ist ungefähr.\nhttps://joaomira
+ .com/wedding/
+URL:https://joaomira.com/wedding/
+END:VEVENT
+END:VCALENDAR

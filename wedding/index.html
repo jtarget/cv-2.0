@@ -31,7 +31,7 @@
 				--sunk: #eeede8;
 				--ink: #17171c;
 				--ink-2: #4b4b55;
-				--muted: #8b8a93;
+				--muted: #74737c;
 				--hair: rgba(23, 23, 28, .08);
 				--hair-2: rgba(23, 23, 28, .14);
 				--indigo: #3e3cb8;
@@ -109,10 +109,10 @@
 				font: 400 clamp(20px, 2.6vw, 24px)/1.35 var(--sans); letter-spacing: -0.02em; color: var(--ink);
 			}
 			.reply-by {
-				display: inline-flex; align-items: center; gap: 10px;
-				font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--indigo);
+				display: inline-flex; align-items: flex-start; gap: 10px;
+				font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--indigo);
 			}
-			.reply-by::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
+			.reply-by::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 6px; border-radius: 50%; background: var(--indigo); }
 			.invite .reply-by { grid-row: 5; grid-column: 1 / -1; margin: 22px 0 0; }
 			.cta {
 				grid-row: 6; grid-column: 1 / -1; justify-self: start;
@@ -332,6 +332,50 @@
 			.tray.done .slot { border-color: var(--indigo); }
 			.tray .slot:last-child { margin-right: 0; }
 
+			/* Add to calendar */
+			section > h2:has(+ .add-cal) { margin-bottom: 22px; }
+			.add-cal {
+				display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 12px; border-radius: 999px;
+				font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--indigo); text-decoration: none;
+				background: var(--indigo-tint); transition: background .2s, transform .2s var(--ease);
+			}
+			.add-cal:hover { background: #e4e4f8; }
+			section > .add-cal { margin: 0 0 56px; }
+			.thanks .add-cal { margin: 0 6px 12px; }
+
+			/* Note for guests who already answered */
+			.answered { margin: 0; padding: 14px 16px; border-radius: 14px; background: var(--indigo-tint); color: var(--indigo-deep); font-size: 14px; line-height: 1.5; }
+
+			/* Floating answer button while reading the plan */
+			.float-cta {
+				position: fixed; left: 50%; bottom: 18px; z-index: 25;
+				display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 999px;
+				font: 500 14px/1 var(--sans); color: #fff; text-decoration: none;
+				background: rgba(23, 23, 28, .88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+				box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .35);
+				transform: translate(-50%, calc(100% + 40px)); visibility: hidden;
+				transition: transform .45s var(--ease), visibility 0s .45s, background .2s;
+			}
+			.float-cta.show { transform: translate(-50%, 0); visibility: visible; transition: transform .45s var(--ease), background .2s; }
+			.float-cta:hover { background: var(--indigo); }
+
+			/* Press feedback */
+			.cta:active, .submit:active, .float-cta.show:active, .add-cal:active, .thanks button:active { transform: scale(.98); }
+			.check:active { background: #f3f3ef; }
+			.card img { transition: outline-color .2s, filter .3s, transform .25s var(--ease); }
+			.card:active img { transform: scale(.985); }
+			.chip:active span, .filters button:active, .seg button:active { transform: scale(.97); }
+			.chip span, .filters button, .seg button { transition: background .2s, color .2s, border-color .2s, transform .15s var(--ease); }
+
+			/* Sending and success */
+			.submit.is-sending::after {
+				content: ""; display: inline-block; width: 14px; height: 14px; margin-left: 10px; vertical-align: -2px;
+				border: 2px solid rgba(255, 255, 255, .35); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite;
+			}
+			@keyframes spin { to { transform: rotate(360deg); } }
+			.thanks:not([hidden]) .ornament { animation: bloom .9s var(--ease) both; }
+			@keyframes bloom { from { opacity: 0; transform: rotate(-90deg) scale(.5); } }
+
 			/* Entrances */
 			.reveal { opacity: 0; transform: translateY(16px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 			.reveal.in { opacity: 1; transform: none; }
@@ -388,6 +432,7 @@
 
 			<section aria-labelledby="programme" class="reveal">
 				<h2 id="programme" data-t="programme"></h2>
+				<a class="add-cal" data-cal href="cal/anja-joao-en.ics"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2.5"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3M8 8.5v3.5M6.25 10.25h3.5"/></svg><span data-t="addCal"></span></a>
 
 				<div class="day">
 					<p class="day-title" data-t="day1"></p>
@@ -465,10 +510,11 @@
 
 				<div class="sheet">
 				<form id="form" novalidate>
+					<p class="answered" id="answered" hidden></p>
 					<div class="field">
 						<label class="title" for="name" data-t="nameLabel"></label>
 						<input type="text" id="name" name="name" autocomplete="name" />
-						<p class="error" id="err-name"></p>
+						<p class="error" aria-live="polite" id="err-name"></p>
 					</div>
 
 					<div class="field">
@@ -481,7 +527,7 @@
 							<label class="check"><input type="checkbox" name="events" value="dinner" /><div><strong data-t="evDinner"></strong><span data-t="evDinnerWhen"></span></div></label>
 							<label class="check none"><input type="checkbox" name="none" id="none" /><div><strong data-t="evNone"></strong></div></label>
 						</div>
-						<p class="error" id="err-events"></p>
+						<p class="error" aria-live="polite" id="err-events"></p>
 					</div>
 
 					<div class="field boat-only" hidden>
@@ -504,7 +550,7 @@
 						<div id="bundles" hidden>
 							<div class="grid bundle-grid" id="bundles-grid"></div>
 						</div>
-						<p class="error" id="err-sandwich"></p>
+						<p class="error" aria-live="polite" id="err-sandwich"></p>
 					</div>
 
 					<div class="field boat-only" hidden>
@@ -515,7 +561,7 @@
 							<label class="check"><input type="radio" name="drink" value="Hot tea" /><span class="emoji" aria-hidden="true">🍵</span><strong data-t="drinkTea"></strong></label>
 							<label class="check"><input type="radio" name="drink" value="Beer" /><span class="emoji" aria-hidden="true">🍺</span><strong data-t="drinkBeer"></strong></label>
 						</div>
-						<p class="error" id="err-drink"></p>
+						<p class="error" aria-live="polite" id="err-drink"></p>
 					</div>
 
 					<div class="field eats" hidden>
@@ -540,7 +586,7 @@
 
 					<div>
 						<button class="submit" type="submit" data-t="send"></button>
-						<p class="error" id="err-send"></p>
+						<p class="error" aria-live="polite" id="err-send"></p>
 					</div>
 				</form>
 
@@ -549,6 +595,7 @@
 					<h2 data-t="thanksTitle"></h2>
 					<p data-t="thanksText"></p>
 					<ul class="summary" id="summary"></ul>
+					<a class="add-cal" data-cal href="cal/anja-joao-en.ics"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2.5"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3M8 8.5v3.5M6.25 10.25h3.5"/></svg><span data-t="addCal"></span></a>
 					<button type="button" id="again" data-t="again"></button>
 				</div>
 				</div>
@@ -556,6 +603,8 @@
 
 			<footer><svg class="ornament" width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><g><path d="M20 4v32M6.1 12l27.8 16M6.1 28l27.8-16"/><path d="M20 4l-3 3M20 4l3 3M20 36l-3-3M20 36l3-3M6.1 12l1.1 4.1M6.1 12l4.1-1.1M33.9 28l-1.1-4.1M33.9 28l-4.1 1.1M6.1 28l4.1 1.1M6.1 28l1.1-4.1M33.9 12l-4.1-1.1M33.9 12l-1.1 4.1"/><circle cx="20" cy="20" r="2.2"/></g></svg><div>Anja &amp; João · København 2026</div></footer>
 		</div>
+
+		<a class="float-cta" href="#rsvp-section" tabindex="-1"><span data-t="cta"></span> <span aria-hidden="true">↓</span></a>
 
 		<div class="tray" id="tray" aria-hidden="true">
 			<div class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
@@ -634,6 +683,9 @@
 					dietShellfish: "Shellfish allergy",
 					drinkTea: "Hot tea",
 					drinkBeer: "Beer",
+					addCal: "Add to calendar",
+					daysLeft: (n) => (n === 1 ? "1 day left" : `${n} days left`),
+					answered: (name) => `You already answered as ${name}. Sending again adds a new answer.`,
 					messageLabel: "A message for us",
 					messageHint: "Optional.",
 					send: "Send",
@@ -715,6 +767,9 @@
 					dietShellfish: "Alergia a marisco",
 					drinkTea: "Chá quente",
 					drinkBeer: "Cerveja",
+					addCal: "Adicionar ao calendário",
+					daysLeft: (n) => (n === 1 ? "falta 1 dia" : `faltam ${n} dias`),
+					answered: (name) => `Já respondeste como ${name}. Se enviares de novo, fica uma nova resposta.`,
 					messageLabel: "Uma mensagem para nós",
 					messageHint: "Opcional.",
 					send: "Enviar",
@@ -796,6 +851,9 @@
 					dietShellfish: "Krustentierallergie",
 					drinkTea: "Heißer Tee",
 					drinkBeer: "Bier",
+					addCal: "Zum Kalender hinzufügen",
+					daysLeft: (n) => (n === 1 ? "noch 1 Tag" : `noch ${n} Tage`),
+					answered: (name) => `Du hast schon als ${name} geantwortet. Wenn du erneut sendest, kommt eine neue Antwort dazu.`,
 					messageLabel: "Eine Nachricht für uns",
 					messageHint: "Optional.",
 					send: "Senden",
@@ -877,6 +935,9 @@
 					dietShellfish: "贝类过敏",
 					drinkTea: "热茶",
 					drinkBeer: "啤酒",
+					addCal: "添加到日历",
+					daysLeft: (n) => `还剩 ${n} 天`,
+					answered: (name) => `您已以 ${name} 的名义回复。再次提交会新增一条回复。`,
 					messageLabel: "给我们的留言",
 					messageHint: "选填。",
 					send: "提交",
@@ -957,6 +1018,11 @@
 					if (typeof v === "string") el.textContent = v;
 				});
 				$$("[data-ph]").forEach((el) => (el.placeholder = t[el.dataset.ph]));
+				// Countdown to the reply deadline, the end of 8 November in Copenhagen.
+				const left = Math.ceil((new Date("2026-11-08T23:59:59+01:00") - Date.now()) / 864e5);
+				$$('[data-t="replyBy"]').forEach((el) => (el.textContent = left > 0 ? `${t.replyBy} · ${t.daysLeft(left)}` : t.replyBy));
+				$$("[data-cal]").forEach((a) => (a.href = `cal/anja-joao-${lang}.ics`));
+				showAnswered();
 				// Official store badges, in the page language.
 				$$("[data-badge]").forEach((img) => {
 					img.src = `img/badges/${img.dataset.badge}-${lang}.${img.dataset.badge === "apple" ? "svg" : "png"}`;
@@ -964,6 +1030,15 @@
 				$$(".langs button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang));
 				renderMenu();
 				clearErrors();
+			}
+
+			// A returning guest sees that they already answered, so answers aren't sent twice by accident.
+			function showAnswered() {
+				let prev = null;
+				try { prev = JSON.parse(localStorage.getItem("wedding-answered")); } catch (e) {}
+				const note = $("#answered");
+				note.hidden = !prev?.name;
+				if (prev?.name) note.textContent = T[lang].answered(prev.name);
 			}
 
 			function updateSingles() {
@@ -1076,6 +1151,7 @@
 				const data = payload();
 				const btn = $(".submit");
 				btn.disabled = true;
+				btn.classList.add("is-sending");
 				btn.textContent = T[lang].sending;
 				try {
 					if (SHEET_URL) {
@@ -1088,12 +1164,15 @@
 					$("#thanks").hidden = false;
 					$("#thanks > p").textContent = data.coming === "yes" ? T[lang].thanksText : T[lang].thanksTextNo;
 					$("#summary").innerHTML = summary(data);
+					try { localStorage.setItem("wedding-answered", JSON.stringify({ name: data.name })); } catch (e) {}
+					showAnswered();
 					updateTray();
 					$("#rsvp-section").scrollIntoView({ behavior: "smooth" });
 				} catch (err) {
 					$("#err-send").textContent = T[lang].errSend;
 				} finally {
 					btn.disabled = false;
+					btn.classList.remove("is-sending");
 					btn.textContent = T[lang].send;
 				}
 			}
@@ -1185,6 +1264,13 @@
 			// The language bar only gets its frosted background once the page scrolls.
 			const langs = $(".langs");
 			const onScroll = () => langs.classList.toggle("scrolled", scrollY > 8);
+
+			// Floating answer button: shown once the hero button is out of view, until the form is reached.
+			const floatCta = $(".float-cta");
+			let heroOut = false, formIn = false;
+			const syncFloat = () => floatCta.classList.toggle("show", heroOut && !formIn);
+			new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; syncFloat(); }).observe($(".invite .cta"));
+			new IntersectionObserver(([e]) => { formIn = e.isIntersecting; syncFloat(); }, { rootMargin: "0px 0px -35% 0px" }).observe($("#rsvp-section"));
 			addEventListener("scroll", onScroll, { passive: true });
 			onScroll();
 		</script>
