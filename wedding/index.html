@@ -570,7 +570,6 @@
 					filterVeg: "Vegetarian",
 					filterFish: "Fish",
 					filterMeat: "Meat",
-					tray: (n) => (n === 3 ? "All 3 chosen" : `${n} of 3 chosen`),
 					sumEvents: "Joining",
 					sumFood: "Smørrebrød",
 					sumDrink: "Drink",
@@ -610,10 +609,10 @@
 					evDinnerWhen: "Wed 9 Dec, 17:45",
 					evNone: "Sadly, I can't make it",
 					sandwichLabel: "Your lunch on the boat",
-					sandwichHint: "From Aamanns. Pick 3, or one set of 3.",
-					modeSingles: "Choose 3",
+					sandwichHint: "From Aamanns. We recommend 2 for a light lunch or 3 for a satisfying lunch. Or pick a set of 3.",
+					modeSingles: "Choose 2 or 3",
 					modeBundle: "A set of 3",
-					counter: (n) => `${n} of 3 chosen`,
+					counter: (n) => (n < 2 ? `${n} chosen, pick 2 or 3` : n === 2 ? "2 chosen, a light lunch" : "3 chosen, a satisfying lunch"),
 					veg: "Vegetarian",
 					drinkLabel: "Your drink on board",
 					drinkChoc: "Hot chocolate",
@@ -633,7 +632,7 @@
 					sending: "Sending…",
 					errName: "Please write your name.",
 					errEvents: "Please tick at least one option.",
-					errSingles: "Please choose 3 sandwiches.",
+					errSingles: "Please choose 2 or 3 sandwiches.",
 					errBundle: "Please choose a set.",
 					errDrink: "Please choose a drink.",
 					errSend: "Something went wrong. Please try again.",
@@ -649,7 +648,6 @@
 					filterVeg: "Vegetarianas",
 					filterFish: "Peixe",
 					filterMeat: "Carne",
-					tray: (n) => (n === 3 ? "As 3 escolhidas" : `${n} de 3 escolhidas`),
 					sumEvents: "Vais a",
 					sumFood: "Smørrebrød",
 					sumDrink: "Bebida",
@@ -689,10 +687,10 @@
 					evDinnerWhen: "Qua 9 dez, 17:45",
 					evNone: "Infelizmente não posso ir",
 					sandwichLabel: "O teu almoço no barco",
-					sandwichHint: "Da Aamanns. Escolhe 3, ou um conjunto de 3.",
-					modeSingles: "Escolher 3",
+					sandwichHint: "Da Aamanns. Recomendamos 2 para um almoço leve ou 3 para um almoço mais completo. Ou escolhe um conjunto de 3.",
+					modeSingles: "Escolher 2 ou 3",
 					modeBundle: "Um conjunto de 3",
-					counter: (n) => `${n} de 3 escolhidas`,
+					counter: (n) => (n < 2 ? `${n} escolhidas, escolhe 2 ou 3` : n === 2 ? "2 escolhidas, um almoço leve" : "3 escolhidas, um almoço mais completo"),
 					veg: "Vegetariano",
 					drinkLabel: "A tua bebida a bordo",
 					drinkChoc: "Chocolate quente",
@@ -712,7 +710,7 @@
 					sending: "A enviar…",
 					errName: "Escreve o teu nome, por favor.",
 					errEvents: "Marca pelo menos uma opção.",
-					errSingles: "Escolhe 3 sanduíches, por favor.",
+					errSingles: "Escolhe 2 ou 3 sanduíches, por favor.",
 					errBundle: "Escolhe um conjunto, por favor.",
 					errDrink: "Escolhe uma bebida, por favor.",
 					errSend: "Algo correu mal. Tenta outra vez.",
@@ -728,7 +726,6 @@
 					filterVeg: "Vegetarisch",
 					filterFish: "Fisch",
 					filterMeat: "Fleisch",
-					tray: (n) => (n === 3 ? "Alle 3 ausgewählt" : `${n} von 3 ausgewählt`),
 					sumEvents: "Dabei bei",
 					sumFood: "Smørrebrød",
 					sumDrink: "Getränk",
@@ -768,10 +765,10 @@
 					evDinnerWhen: "Mi 9. Dez, 17:45",
 					evNone: "Leider kann ich nicht kommen",
 					sandwichLabel: "Dein Mittagessen auf dem Boot",
-					sandwichHint: "Von Aamanns. Wähle 3 oder ein Set mit 3.",
-					modeSingles: "3 auswählen",
+					sandwichHint: "Von Aamanns. Wir empfehlen 2 für ein leichtes oder 3 für ein sättigendes Mittagessen. Oder wähle ein Set mit 3.",
+					modeSingles: "2 oder 3 wählen",
 					modeBundle: "Ein Set mit 3",
-					counter: (n) => `${n} von 3 ausgewählt`,
+					counter: (n) => (n < 2 ? `${n} ausgewählt, wähle 2 oder 3` : n === 2 ? "2 ausgewählt, ein leichtes Mittagessen" : "3 ausgewählt, ein sättigendes Mittagessen"),
 					veg: "Vegetarisch",
 					drinkLabel: "Dein Getränk an Bord",
 					drinkChoc: "Heiße Schokolade",
@@ -791,7 +788,7 @@
 					sending: "Wird gesendet…",
 					errName: "Bitte gib deinen Namen ein.",
 					errEvents: "Bitte kreuze mindestens eine Option an.",
-					errSingles: "Bitte wähle 3 Brote aus.",
+					errSingles: "Bitte wähle 2 oder 3 Brote aus.",
 					errBundle: "Bitte wähle ein Set aus.",
 					errDrink: "Bitte wähle ein Getränk aus.",
 					errSend: "Etwas ist schiefgelaufen. Bitte versuche es noch einmal.",
@@ -807,7 +804,6 @@
 					filterVeg: "素食",
 					filterFish: "鱼类",
 					filterMeat: "肉类",
-					tray: (n) => (n === 3 ? "3份已选好" : `已选 ${n} / 3`),
 					sumEvents: "参加",
 					sumFood: "开放式三明治",
 					sumDrink: "饮品",
@@ -847,10 +843,10 @@
 					evDinnerWhen: "12月9日 星期三 17:45",
 					evNone: "很遗憾，我无法参加",
 					sandwichLabel: "您在船上的午餐",
-					sandwichHint: "来自 Aamanns。选3份，或1个三件套。",
-					modeSingles: "选3份",
+					sandwichHint: "来自 Aamanns。建议轻食午餐选2份，想吃饱一些选3份。也可选1个三件套。",
+					modeSingles: "选2或3份",
 					modeBundle: "1个三件套",
-					counter: (n) => `已选 ${n} / 3`,
+					counter: (n) => (n < 2 ? `已选 ${n} 份，请选2或3份` : n === 2 ? "已选2份，轻食午餐" : "已选3份，丰盛午餐"),
 					veg: "素食",
 					drinkLabel: "您在船上的饮品",
 					drinkChoc: "热巧克力",
@@ -870,7 +866,7 @@
 					sending: "正在提交…",
 					errName: "请填写您的姓名。",
 					errEvents: "请至少勾选一项。",
-					errSingles: "请选择3份三明治。",
+					errSingles: "请选择2或3份三明治。",
 					errBundle: "请选择一个三件套。",
 					errDrink: "请选择一种饮品。",
 					errSend: "出了点问题，请再试一次。",
@@ -970,8 +966,8 @@
 				$$("#tray .slot").forEach((el, i) => {
 					el.style.backgroundImage = picks[i] ? `url(img/${picks[i]}.jpg)` : "";
 				});
-				$("#tray-text").textContent = T[lang].tray(n);
-				tray.classList.toggle("done", n === 3);
+				$("#tray-text").textContent = T[lang].counter(n);
+				tray.classList.toggle("done", n >= 2);
 				tray.classList.toggle("show", Boolean(boat && mode === "singles" && menuInView && !$("#form").hidden));
 			}
 			new IntersectionObserver(([e]) => {
@@ -1016,7 +1012,7 @@
 				const events = $$('input[name="events"]:checked').map((i) => i.value);
 				if (!events.length && !$("#none").checked) fail("#err-events", t.errEvents, $(".checks"));
 				if (events.includes("boat")) {
-					if (mode === "singles" && $$('input[name="single"]:checked').length !== 3)
+					if (mode === "singles" && picks.length < 2)
 						fail("#err-sandwich", t.errSingles, $(".seg"));
 					if (mode === "bundle" && !$('input[name="bundle"]:checked'))
 						fail("#err-sandwich", t.errBundle, $(".seg"));
