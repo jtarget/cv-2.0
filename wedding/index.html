@@ -252,6 +252,20 @@
 			.card:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
 			.bundle-grid { grid-template-columns: repeat(2, 1fr); }
 
+			.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+			.chip { position: relative; cursor: pointer; }
+			.chip input { position: absolute; opacity: 0; pointer-events: none; }
+			.chip span {
+				display: inline-flex; align-items: center; gap: 6px;
+				font: 500 14px/1 var(--sans); color: var(--ink);
+				background: #fff; border: 1px solid var(--line-strong); border-radius: 999px; padding: 11px 16px;
+				transition: background .15s, color .15s, border-color .15s;
+			}
+			.chip input:checked + span { background: var(--accent); border-color: var(--accent); color: #fff; }
+			.chip input:checked + span::before { content: "✓"; font-size: 12px; }
+			.chip input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+			.eats:not([hidden]) { animation: rise .35s ease both; }
+
 			.drinks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 			.drinks .check { flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 22px 14px 18px; }
 			.drinks .check input { position: absolute; top: 12px; left: 12px; }
@@ -472,6 +486,20 @@
 						<p class="error" id="err-drink"></p>
 					</div>
 
+					<div class="field eats" hidden>
+						<span class="title" data-t="dietLabel"></span>
+						<p class="hint" data-t="dietHint"></p>
+						<div class="chips">
+							<label class="chip"><input type="checkbox" name="diet" value="Vegetarian" /><span data-t="dietVeg"></span></label>
+							<label class="chip"><input type="checkbox" name="diet" value="Vegan" /><span data-t="dietVegan"></span></label>
+							<label class="chip"><input type="checkbox" name="diet" value="Gluten free" /><span data-t="dietGluten"></span></label>
+							<label class="chip"><input type="checkbox" name="diet" value="Lactose free" /><span data-t="dietLactose"></span></label>
+							<label class="chip"><input type="checkbox" name="diet" value="Nut allergy" /><span data-t="dietNut"></span></label>
+							<label class="chip"><input type="checkbox" name="diet" value="Shellfish allergy" /><span data-t="dietShellfish"></span></label>
+						</div>
+						<input type="text" id="diet-other" name="diet-other" data-ph="dietOther" />
+					</div>
+
 					<div class="field">
 						<label class="title" for="message" data-t="messageLabel"></label>
 						<p class="hint" data-t="messageHint"></p>
@@ -560,6 +588,15 @@
 					drinkLabel: "Your drink on board",
 					drinkChoc: "Hot chocolate",
 					drinkWine: "Mulled wine",
+					dietLabel: "Dietary needs",
+					dietHint: "Optional. For the boat, lunch and dinner.",
+					dietOther: "Anything else, like other allergies",
+					dietVeg: "Vegetarian",
+					dietVegan: "Vegan",
+					dietGluten: "Gluten free",
+					dietLactose: "Lactose free",
+					dietNut: "Nut allergy",
+					dietShellfish: "Shellfish allergy",
 					messageLabel: "A message for us",
 					messageHint: "Optional.",
 					send: "Send",
@@ -627,6 +664,15 @@
 					drinkLabel: "A tua bebida a bordo",
 					drinkChoc: "Chocolate quente",
 					drinkWine: "Vinho quente",
+					dietLabel: "Restrições alimentares",
+					dietHint: "Opcional. Para o barco, o almoço e o jantar.",
+					dietOther: "Algo mais, como outras alergias",
+					dietVeg: "Vegetariano",
+					dietVegan: "Vegano",
+					dietGluten: "Sem glúten",
+					dietLactose: "Sem lactose",
+					dietNut: "Alergia a frutos secos",
+					dietShellfish: "Alergia a marisco",
 					messageLabel: "Uma mensagem para nós",
 					messageHint: "Opcional.",
 					send: "Enviar",
@@ -694,6 +740,15 @@
 					drinkLabel: "Dein Getränk an Bord",
 					drinkChoc: "Heiße Schokolade",
 					drinkWine: "Glühwein",
+					dietLabel: "Ernährung",
+					dietHint: "Optional. Für Boot, Mittag und Abendessen.",
+					dietOther: "Sonst noch etwas, etwa andere Allergien",
+					dietVeg: "Vegetarisch",
+					dietVegan: "Vegan",
+					dietGluten: "Glutenfrei",
+					dietLactose: "Laktosefrei",
+					dietNut: "Nussallergie",
+					dietShellfish: "Krustentierallergie",
 					messageLabel: "Eine Nachricht für uns",
 					messageHint: "Optional.",
 					send: "Senden",
@@ -761,6 +816,15 @@
 					drinkLabel: "您在船上的饮品",
 					drinkChoc: "热巧克力",
 					drinkWine: "热红酒",
+					dietLabel: "饮食限制",
+					dietHint: "选填。适用于游船、午餐和晚餐。",
+					dietOther: "其他，例如其他过敏",
+					dietVeg: "素食",
+					dietVegan: "纯素",
+					dietGluten: "无麸质",
+					dietLactose: "无乳糖",
+					dietNut: "坚果过敏",
+					dietShellfish: "贝类过敏",
 					messageLabel: "给我们的留言",
 					messageHint: "选填。",
 					send: "提交",
@@ -840,6 +904,7 @@
 					const v = t[el.dataset.t];
 					if (typeof v === "string") el.textContent = v;
 				});
+				$$("[data-ph]").forEach((el) => (el.placeholder = t[el.dataset.ph]));
 				$$(".langs button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang));
 				renderMenu();
 				clearErrors();
@@ -892,6 +957,7 @@
 				});
 				const boat = $('input[name="events"][value="boat"]').checked;
 				$$(".boat-only").forEach((el) => (el.hidden = !boat));
+				$(".eats").hidden = !$$('input[name="events"]:checked').some((i) => i.value !== "ceremony");
 				updateTray();
 			}
 
@@ -940,6 +1006,9 @@
 					dinner: yes("dinner"),
 					sandwiches,
 					drink: boat ? $('input[name="drink"]:checked').value : "",
+					dietary: $(".eats").hidden
+						? ""
+						: [...$$('input[name="diet"]:checked').map((i) => i.value), $("#diet-other").value.trim()].filter(Boolean).join(", "),
 					message: $("#message").value.trim(),
 					language: lang,
 				};
@@ -986,6 +1055,13 @@
 						: title(MENU.bundles, $('input[name="bundle"]:checked').value);
 					const drink = data.drink === "Hot chocolate" ? t.drinkChoc : t.drinkWine;
 					rows.push(["🥪", t.sumFood, food], [data.drink === "Hot chocolate" ? "☕" : "🍷", t.sumDrink, drink]);
+				}
+				if (data.dietary) {
+					const label = (v) => {
+						const box = $(`input[name="diet"][value="${v}"]`);
+						return box ? box.nextElementSibling.textContent : v;
+					};
+					rows.push(["🍽", t.dietLabel, data.dietary.split(", ").map(label).join(", ")]);
 				}
 				const esc = (v) => v.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
 				return rows.map(([icon, label, value]) => `<li><span>${icon}</span><span><b>${label}:</b> ${esc(value)}</span></li>`).join("");
