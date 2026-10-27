@@ -6,58 +6,58 @@ METHOD:PUBLISH
 X-WR-CALNAME:Anja & João
 BEGIN:VEVENT
 UID:boat-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261208T103000Z
 DTEND:20261208T123000Z
 SUMMARY:私人暖气冬季游船 · Anja & João
 LOCATION:Café Lille Fugl\, Gammel Strand 48\, 1202 København
 DESCRIPTION:11:30 在 Café Lille Fugl 集合. 我们在这里集合，然
- 后一起步行到 Gammel Strand 的游船码头。\n12:00 至 13:30，专
- 属我们的游船。船上午餐：开放式三明治和饮品。\n游船
- 和午餐我们请客\nhttps://joaomira.com/wedding/
+ 后一起步行到 Gammel Strand 的游船码头。\n专属我们的游船
+ 。船上午餐：开放式三明治和饮品。\n游船和午餐我们请
+ 客\nhttps://joaomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:tivoli-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261208T124500Z
 DTEND:20261208T144500Z
 SUMMARY:趣伏里公园 · Anja & João
 LOCATION:Tivoli\, Vesterbrogade 3\, 1630 København
-DESCRIPTION:我们一起继续游玩，不设结束时间。可自愿留在
- 美食广场吃晚餐。\n结束时间为大致估计。\nhttps://joaomira
- .com/wedding/
+DESCRIPTION:我们一起畅游趣伏里，不设结束时间。可自愿在
+  Tivoli Food Hall 吃晚餐。\n结束时间为大致估计。\nhttps://jo
+ aomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:ceremony-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261209T083500Z
 DTEND:20261209T090500Z
 SUMMARY:市政厅婚礼仪式 · Anja & João
 LOCATION:Københavns Rådhus\, Rådhuspladsen 1\, 1550 København
 DESCRIPTION:请于 09:35 前到达室内。从正门进入，沿地上的
  爱心标志穿过大厅，到达等候区。仪式在婚礼厅举行，
- 约15分钟。之后有时间回酒店。\nhttps://joaomira.com/wedding/
+ 约15分钟。之后有时间回酒店换衣服。\nhttps://joaomira.com/w
+ edding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:louisiana-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261209T100000Z
 DTEND:20261209T140000Z
 SUMMARY:路易斯安那博物馆 · Anja & João
-LOCATION:Rådhuspladsen St.\, 1550 København
-DESCRIPTION:在 Rådhuspladsen 地铁站正门集合（面向市政厅钟
- 楼），然后一起前往博物馆。\n门票和午餐我们请客\n小
- 贴士：请提前下载 Rejsekort 应用并绑定银行卡，乘坐地铁
- 和火车时即可刷卡进出站。\n结束时间为大致估计。\nhttp
- s://joaomira.com/wedding/
+LOCATION:Dragespringvandet\, Rådhuspladsen\, 1550 København
+DESCRIPTION:在 Rådhuspladsen 的飞龙喷泉集合，然后一起前往
+ 博物馆。\n门票和午餐我们请客\n小贴士：请提前下载 Rej
+ sekort 应用并绑定银行卡，乘坐地铁和火车时即可刷卡进
+ 出站。\n结束时间为大致估计。\nhttps://joaomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:dinner-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261209T170000Z
 DTEND:20261209T200000Z
 SUMMARY:Cofoco 晚餐 · Anja & João

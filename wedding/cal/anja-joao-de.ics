@@ -6,32 +6,32 @@ METHOD:PUBLISH
 X-WR-CALNAME:Anja & João
 BEGIN:VEVENT
 UID:boat-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261208T103000Z
 DTEND:20261208T123000Z
 SUMMARY:Privates beheiztes Winterboot · Anja & João
 LOCATION:Café Lille Fugl\, Gammel Strand 48\, 1202 København
 DESCRIPTION:11:30 Treffpunkt Café Lille Fugl. Wir treffen uns hier und geh
- en gemeinsam zum Bootsanleger am Gammel Strand.\nVon 12:00 bis 13:30\, nur
-  für uns. Mittagessen an Bord: Smørrebrød und ein Getränk.\nBoot und M
- ittagessen auf uns\nhttps://joaomira.com/wedding/
+ en gemeinsam zum Bootsanleger am Gammel Strand.\nNur für uns. Mittagessen
+  an Bord: Smørrebrød und ein Getränk.\nBoot und Mittagessen auf uns\nht
+ tps://joaomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:tivoli-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261208T124500Z
 DTEND:20261208T144500Z
 SUMMARY:Tivoli · Anja & João
 LOCATION:Tivoli\, Vesterbrogade 3\, 1630 København
-DESCRIPTION:Wir ziehen gemeinsam weiter\, ohne festes Ende. Zum Abendessen 
- im Food Court zu bleiben ist optional.\nDie Endzeit ist ungefähr.\nhttps:
- //joaomira.com/wedding/
+DESCRIPTION:Wir erkunden Tivoli gemeinsam\, mit offenem Ende. Abendessen in
+  der Tivoli Food Hall ist optional.\nDie Endzeit ist ungefähr.\nhttps://j
+ oaomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:ceremony-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261209T083500Z
 DTEND:20261209T090500Z
 SUMMARY:Trauung im Rathaus · Anja & João
@@ -39,27 +39,26 @@ LOCATION:Københavns Rådhus\, Rådhuspladsen 1\, 1550 København
 DESCRIPTION:Sei bis 09:35 drinnen. Folge vom Haupteingang den Herzen am Bod
  en durch die große Halle bis zum Wartebereich. Die Trauung findet im Hoch
  zeitssaal statt und dauert etwa 15 Minuten. Danach bleibt Zeit\, kurz ins 
- Hotel zu gehen.\nhttps://joaomira.com/wedding/
+ Hotel zu gehen und dich umzuziehen.\nhttps://joaomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:louisiana-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261209T100000Z
 DTEND:20261209T140000Z
 SUMMARY:Louisiana Museum · Anja & João
-LOCATION:Rådhuspladsen St.\, 1550 København
-DESCRIPTION:Treffpunkt am Haupteingang der Metrostation Rådhuspladsen\, ge
- genüber dem Rathausturm. Von dort fahren wir gemeinsam zum Museum.\nEintr
- itt und Mittagessen auf uns\nTipp: Lade vorab die Rejsekort App herunter u
- nd hinterlege eine Zahlungskarte\, damit du dich in Metro und Zügen ein u
- nd auschecken kannst.\nDie Endzeit ist ungefähr.\nhttps://joaomira.com/we
- dding/
+LOCATION:Dragespringvandet\, Rådhuspladsen\, 1550 København
+DESCRIPTION:Treffpunkt am Drachenbrunnen auf dem Rådhuspladsen. Von dort f
+ ahren wir gemeinsam zum Museum.\nEintritt und Mittagessen auf uns\nTipp: L
+ ade vorab die Rejsekort App herunter und hinterlege eine Zahlungskarte\, d
+ amit du dich in Metro und Zügen ein und auschecken kannst.\nDie Endzeit i
+ st ungefähr.\nhttps://joaomira.com/wedding/
 URL:https://joaomira.com/wedding/
 END:VEVENT
 BEGIN:VEVENT
 UID:dinner-2026@anja-joao.joaomira.com
-DTSTAMP:20261027T215632Z
+DTSTAMP:20261027T220410Z
 DTSTART:20261209T170000Z
 DTEND:20261209T200000Z
 SUMMARY:Abendessen im Cofoco · Anja & João
