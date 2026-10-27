@@ -5,7 +5,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="robots" content="noindex, nofollow" />
 		<meta name="color-scheme" content="light" />
-		<link rel="icon" href="../images/favicon.ico" />
+		<meta name="theme-color" content="#f6f5f1" />
+		<meta name="description" content="8 and 9 December 2026, Copenhagen. Please reply by 8 November." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://joaomira.com/wedding/" />
+		<meta property="og:title" content="Anja & João" />
+		<meta property="og:description" content="8 and 9 December 2026, Copenhagen. Please reply by 8 November." />
+		<meta property="og:image" content="https://joaomira.com/wedding/img/share.jpg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233e3cb8'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='44' fill='white'%3E%26%3C/text%3E%3C/svg%3E" />
+		<link rel="apple-touch-icon" href="../images/favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -43,6 +54,8 @@
 				overflow-x: clip;
 			}
 			a { color: inherit; }
+			h1, h2, h3, h4, .intro, .field > .title { text-wrap: balance; }
+			p, .check span { text-wrap: pretty; }
 			.wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
 			/* Language switch */
@@ -112,7 +125,7 @@
 			.cta:hover { transform: translateY(-1px); background: var(--indigo-deep); }
 
 			/* Sections */
-			section { counter-increment: section; border-top: 1px solid var(--hair-2); padding: 40px 0 104px; scroll-margin-top: 56px; }
+			section { counter-increment: section; border-top: 1px solid var(--hair-2); padding: 40px 0 88px; scroll-margin-top: 56px; }
 			section > h2 { margin: 0 0 56px; font: 400 clamp(44px, 8vw, 72px)/.95 var(--sans); letter-spacing: -0.045em; }
 			section > h2::before {
 				content: counter(section, decimal-leading-zero); display: block; margin-bottom: 28px;
@@ -326,10 +339,10 @@
 			@media (max-width: 720px) {
 				.wrap { padding: 0 20px; }
 				.langs { padding-top: 16px; padding-bottom: 16px; }
-				.invite { min-height: min(76svh, 640px); padding: 28px 0 56px; }
+				.invite { min-height: min(66svh, 580px); padding: 28px 0 56px; }
 				.invite::before { top: -60px; right: -320px; }
 				h1 .n1 { display: block; }
-				section { padding: 32px 0 80px; }
+				section { padding: 32px 0 64px; }
 				section > h2 { margin-bottom: 44px; }
 				.event { grid-template-columns: 1fr; padding: 24px 0; }
 				.event .time { margin-bottom: 6px; line-height: 1.4; }
@@ -416,7 +429,7 @@
 						<div>
 							<h3 data-t="louisianaTitle"></h3>
 							<p data-t="louisianaText"></p>
-							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=55.67633%2C12.56864" target="_blank" rel="noopener">Rådhuspladsen metro</a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Louisiana%20Museum%20of%20Modern%20Art%2C%20Gammel%20Strandvej%2013%2C%203050%20Humleb%C3%A6k" target="_blank" rel="noopener">Louisiana</a></p>
+							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=55.67633%2C12.56864" target="_blank" rel="noopener" data-t="mapMetro">Rådhuspladsen metro</a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Louisiana%20Museum%20of%20Modern%20Art%2C%20Gammel%20Strandvej%2013%2C%203050%20Humleb%C3%A6k" target="_blank" rel="noopener">Louisiana</a></p>
 							<div class="tip">
 								<span data-t="rejsekortTip"></span>
 								<span class="stores">
@@ -577,6 +590,7 @@
 					louisianaTitle: "Louisiana Museum",
 					louisianaText: "Meet at the main entrance of Rådhuspladsen metro station, facing the City Hall tower, and we travel to the museum together.",
 					rejsekortTip: "Tip: download the Rejsekort app ahead of time and add a payment card, so you can check in and out on the metro and trains.",
+					mapMetro: "Rådhuspladsen metro",
 					lunchOnUs: "Entrance and lunch on us",
 					dinnerTitle: "Dinner at Vækst",
 					dinnerText: "Dinner together to celebrate and finish the day.",
@@ -657,6 +671,7 @@
 					louisianaTitle: "Museu Louisiana",
 					louisianaText: "Encontro na entrada principal da estação de metro de Rådhuspladsen, virada para a torre da Câmara, e vamos juntos ao museu.",
 					rejsekortTip: "Dica: descarrega a app Rejsekort com antecedência e adiciona um cartão de pagamento, para fazeres check in e check out no metro e nos comboios.",
+					mapMetro: "Metro de Rådhuspladsen",
 					lunchOnUs: "Entrada e almoço por nossa conta",
 					dinnerTitle: "Jantar no Vækst",
 					dinnerText: "Jantar juntos para celebrar e terminar o dia.",
@@ -737,6 +752,7 @@
 					louisianaTitle: "Louisiana Museum",
 					louisianaText: "Treffpunkt am Haupteingang der Metrostation Rådhuspladsen, gegenüber dem Rathausturm. Von dort fahren wir gemeinsam zum Museum.",
 					rejsekortTip: "Tipp: Lade vorab die Rejsekort App herunter und hinterlege eine Zahlungskarte, damit du dich in Metro und Zügen ein und auschecken kannst.",
+					mapMetro: "Metro Rådhuspladsen",
 					lunchOnUs: "Eintritt und Mittagessen auf uns",
 					dinnerTitle: "Abendessen im Vækst",
 					dinnerText: "Gemeinsames Abendessen, um zu feiern und den Tag ausklingen zu lassen.",
@@ -817,6 +833,7 @@
 					louisianaTitle: "路易斯安那博物馆",
 					louisianaText: "在 Rådhuspladsen 地铁站正门集合（面向市政厅钟楼），然后一起前往博物馆。",
 					rejsekortTip: "小贴士：请提前下载 Rejsekort 应用并绑定银行卡，乘坐地铁和火车时即可刷卡进出站。",
+					mapMetro: "Rådhuspladsen 地铁站",
 					lunchOnUs: "门票和午餐我们请客",
 					dinnerTitle: "Vækst 晚餐",
 					dinnerText: "一起共进晚餐，庆祝这一天。",
