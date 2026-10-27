@@ -66,13 +66,6 @@ window.MENU = {
 			zh: ["鸡肉沙拉", "鸡肉沙拉配生蔬菜、脆鸡皮和水芹"],
 		},
 		{
-			id: "frikadeller", da: "Frikadeller",
-			en: ["Danish meatballs", "Build your own meatballs of veal and pork with potato salad and radishes"],
-			pt: ["Almôndegas dinamarquesas", "Almôndegas de vitela e porco para montar, com salada de batata e rabanetes"],
-			de: ["Frikadellen", "Frikadellen vom Kalb und Schwein zum Selbstbelegen, mit Kartoffelsalat und Radieschen"],
-			zh: ["丹麦肉丸", "自己组合的小牛肉猪肉丸，配土豆沙拉和小萝卜"],
-		},
-		{
 			id: "grisebryst", da: "Grisebryst",
 			en: ["Pork belly", "Braised pork belly with mustard cream, pickled red cabbage, Christmas spices, crackling and kale sprouts"],
 			pt: ["Barriga de porco", "Barriga de porco estufada com creme de mostarda, couve roxa em conserva, especiarias de Natal, torresmo e rebentos de couve"],
@@ -129,13 +122,6 @@ window.MENU = {
 			pt: ["Os da estação", "Abacate, salada de frango e rosbife"],
 			de: ["Die Saisonalen", "Avocado, Hühnersalat und Roastbeef"],
 			zh: ["时令三件套", "牛油果、鸡肉沙拉和烤牛肉"],
-		},
-		{
-			id: "bundle-groenne-risalamande", da: "De grønne (med risalamande)", veg: true,
-			en: ["The green ones, with risalamande", "Beetroot tartare, potato, avocado and risalamande, the Danish Christmas rice pudding"],
-			pt: ["Os verdes, com risalamande", "Tártaro de beterraba, batata, abacate e risalamande, o arroz doce de Natal dinamarquês"],
-			de: ["Die Grünen, mit Risalamande", "Rote Bete Tatar, Kartoffel, Avocado und Risalamande, der dänische Weihnachtsmilchreis"],
-			zh: ["素食套餐配米布丁", "红甜菜鞑靼、土豆、牛油果和丹麦圣诞米布丁"],
 		},
 		{
 			id: "bundle-boern", da: "For de mindste",
