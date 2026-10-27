@@ -509,6 +509,8 @@
 						<div class="drinks">
 							<label class="check"><input type="radio" name="drink" value="Hot chocolate" /><span class="emoji" aria-hidden="true">☕</span><strong data-t="drinkChoc"></strong></label>
 							<label class="check"><input type="radio" name="drink" value="Mulled wine" /><span class="emoji" aria-hidden="true">🍷</span><strong data-t="drinkWine"></strong></label>
+							<label class="check"><input type="radio" name="drink" value="Hot tea" /><span class="emoji" aria-hidden="true">🍵</span><strong data-t="drinkTea"></strong></label>
+							<label class="check"><input type="radio" name="drink" value="Beer" /><span class="emoji" aria-hidden="true">🍺</span><strong data-t="drinkBeer"></strong></label>
 						</div>
 						<p class="error" id="err-drink"></p>
 					</div>
@@ -581,7 +583,7 @@
 					meetTitle: "Meet at Café Lille Fugl",
 					meetText: "A café by the canal at Gammel Strand.",
 					boatTitle: "Private heated winter boat",
-					boatText: "From 12:00 to 13:30, just for us. Lunch on board: smørrebrød and a hot drink.",
+					boatText: "From 12:00 to 13:30, just for us. Lunch on board: smørrebrød and a drink.",
 					boatOnUs: "Boat and lunch on us",
 					tivoliTitle: "Tivoli Gardens",
 					tivoliText: "We carry on together, with no set end time. Staying for dinner at the food court is optional.",
@@ -626,6 +628,8 @@
 					dietLactose: "Lactose free",
 					dietNut: "Nut allergy",
 					dietShellfish: "Shellfish allergy",
+					drinkTea: "Hot tea",
+					drinkBeer: "Beer",
 					messageLabel: "A message for us",
 					messageHint: "Optional.",
 					send: "Send",
@@ -659,7 +663,7 @@
 					meetTitle: "Encontro no Café Lille Fugl",
 					meetText: "Um café junto ao canal em Gammel Strand.",
 					boatTitle: "Barco de inverno privado e aquecido",
-					boatText: "Das 12:00 às 13:30, só para nós. Almoço a bordo: smørrebrød e uma bebida quente.",
+					boatText: "Das 12:00 às 13:30, só para nós. Almoço a bordo: smørrebrød e uma bebida.",
 					boatOnUs: "Barco e almoço por nossa conta",
 					tivoliTitle: "Jardins de Tivoli",
 					tivoliText: "Continuamos juntos, sem hora para acabar. Ficar para jantar na zona de restauração é opcional.",
@@ -704,6 +708,8 @@
 					dietLactose: "Sem lactose",
 					dietNut: "Alergia a frutos secos",
 					dietShellfish: "Alergia a marisco",
+					drinkTea: "Chá quente",
+					drinkBeer: "Cerveja",
 					messageLabel: "Uma mensagem para nós",
 					messageHint: "Opcional.",
 					send: "Enviar",
@@ -737,7 +743,7 @@
 					meetTitle: "Treffpunkt Café Lille Fugl",
 					meetText: "Ein Café am Kanal bei Gammel Strand.",
 					boatTitle: "Privates beheiztes Winterboot",
-					boatText: "Von 12:00 bis 13:30, nur für uns. Mittagessen an Bord: Smørrebrød und ein heißes Getränk.",
+					boatText: "Von 12:00 bis 13:30, nur für uns. Mittagessen an Bord: Smørrebrød und ein Getränk.",
 					boatOnUs: "Boot und Mittagessen auf uns",
 					tivoliTitle: "Tivoli",
 					tivoliText: "Wir ziehen gemeinsam weiter, ohne festes Ende. Zum Abendessen im Food Court zu bleiben ist optional.",
@@ -782,6 +788,8 @@
 					dietLactose: "Laktosefrei",
 					dietNut: "Nussallergie",
 					dietShellfish: "Krustentierallergie",
+					drinkTea: "Heißer Tee",
+					drinkBeer: "Bier",
 					messageLabel: "Eine Nachricht für uns",
 					messageHint: "Optional.",
 					send: "Senden",
@@ -815,7 +823,7 @@
 					meetTitle: "在 Café Lille Fugl 集合",
 					meetText: "Gammel Strand 运河边的一家咖啡馆。",
 					boatTitle: "私人暖气冬季游船",
-					boatText: "12:00 至 13:30，专属我们的游船。船上午餐：开放式三明治和热饮。",
+					boatText: "12:00 至 13:30，专属我们的游船。船上午餐：开放式三明治和饮品。",
 					boatOnUs: "游船和午餐我们请客",
 					tivoliTitle: "趣伏里公园",
 					tivoliText: "我们一起继续游玩，不设结束时间。可自愿留在美食广场吃晚餐。",
@@ -860,6 +868,8 @@
 					dietLactose: "无乳糖",
 					dietNut: "坚果过敏",
 					dietShellfish: "贝类过敏",
+					drinkTea: "热茶",
+					drinkBeer: "啤酒",
 					messageLabel: "给我们的留言",
 					messageHint: "选填。",
 					send: "提交",
@@ -1088,8 +1098,9 @@
 					const food = mode === "singles"
 						? picks.map((id) => title(MENU.singles, id)).join(", ")
 						: title(MENU.bundles, $('input[name="bundle"]:checked').value);
-					const drink = data.drink === "Hot chocolate" ? t.drinkChoc : t.drinkWine;
-					rows.push(["🥪", t.sumFood, food], [data.drink === "Hot chocolate" ? "☕" : "🍷", t.sumDrink, drink]);
+					const box = $(`input[name="drink"][value="${data.drink}"]`).closest(".check");
+					const drink = box.querySelector("strong").textContent;
+					rows.push(["🥪", t.sumFood, food], [box.querySelector(".emoji").textContent, t.sumDrink, drink]);
 				}
 				if (data.dietary) {
 					const label = (v) => {
