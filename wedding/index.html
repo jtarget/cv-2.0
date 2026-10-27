@@ -347,6 +347,27 @@
 			section > .add-cal { margin: 0 0 56px; }
 			.thanks .add-cal { margin: 0 6px 12px; }
 
+			/* Android calendar sheet */
+			.cal-sheet {
+				width: min(520px, calc(100vw - 24px)); margin: auto auto 12px; padding: 22px 22px 18px;
+				border: 0; border-radius: 24px; background: var(--surface); color: var(--ink);
+				box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .35);
+			}
+			.cal-sheet[open] { animation: rise .35s var(--ease) both; }
+			.cal-sheet::backdrop { background: rgba(23, 23, 28, .35); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+			.cal-sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+			.cal-sheet h3 { margin: 0; font: 500 20px/1.2 var(--sans); letter-spacing: -0.02em; }
+			.cal-close { width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--sunk); font: 400 22px/1 var(--sans); color: var(--ink-2); cursor: pointer; }
+			.cal-hint { margin: 6px 0 14px; font-size: 13px; color: var(--muted); }
+			.cal-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--hair); border-radius: 18px; overflow: hidden; }
+			.cal-list li { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--hair); }
+			.cal-list li:last-child { border-bottom: 0; }
+			.cal-list .cal-when { flex: none; width: 76px; font: 500 11px/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+			.cal-list .cal-what { flex: 1; font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
+			.cal-list a { flex: none; height: 34px; padding: 0 14px; display: inline-flex; align-items: center; border-radius: 999px; background: var(--indigo-tint); color: var(--indigo); text-decoration: none; font: 500 13px/1 var(--sans); }
+			.cal-list a.done { background: var(--indigo); color: #fff; }
+			.cal-file { display: block; margin-top: 14px; text-align: center; font-size: 13px; color: var(--ink-2); }
+
 			/* Note for guests who already answered */
 			.answered { margin: 0; padding: 14px 16px; border-radius: 14px; background: var(--indigo-tint); color: var(--indigo-deep); font-size: 14px; line-height: 1.5; }
 
@@ -615,6 +636,16 @@
 
 		<a class="float-cta" href="#rsvp-section" tabindex="-1"><span data-t="cta"></span> <span aria-hidden="true">↓</span></a>
 
+		<dialog class="cal-sheet" id="cal-sheet" aria-labelledby="cal-sheet-title">
+			<div class="cal-sheet-head">
+				<h3 id="cal-sheet-title" data-t="calSheetTitle"></h3>
+				<button type="button" class="cal-close" data-close aria-label="Close">×</button>
+			</div>
+			<p class="cal-hint" data-t="calHint"></p>
+			<ul class="cal-list" id="cal-list"></ul>
+			<a class="cal-file" data-cal href="cal/anja-joao-en.ics" data-t="calFile"></a>
+		</dialog>
+
 		<div class="tray" id="tray" aria-hidden="true">
 			<div class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
 			<span id="tray-text"></span>
@@ -695,6 +726,10 @@
 					addCal: "Add to calendar",
 					daysLeft: (n) => (n === 1 ? "1 day left" : `${n} days left`),
 					answered: (name) => `You already answered as ${name}. Sending again adds a new answer.`,
+					calSheetTitle: "Add to your calendar",
+					calHint: "Each one opens your calendar app, ready to save.",
+					calAdd: "Add",
+					calFile: "Or download all as a calendar file",
 					messageLabel: "A message for us",
 					messageHint: "Optional.",
 					send: "Send",
@@ -780,6 +815,10 @@
 					addCal: "Adicionar ao calendário",
 					daysLeft: (n) => (n === 1 ? "falta 1 dia" : `faltam ${n} dias`),
 					answered: (name) => `Já respondeste como ${name}. Se enviares de novo, fica uma nova resposta.`,
+					calSheetTitle: "Adicionar ao teu calendário",
+					calHint: "Cada um abre a tua app de calendário, pronto a guardar.",
+					calAdd: "Adicionar",
+					calFile: "Ou descarrega tudo num ficheiro de calendário",
 					messageLabel: "Uma mensagem para nós",
 					messageHint: "Opcional.",
 					send: "Enviar",
@@ -865,6 +904,10 @@
 					addCal: "Zum Kalender hinzufügen",
 					daysLeft: (n) => (n === 1 ? "noch 1 Tag" : `noch ${n} Tage`),
 					answered: (name) => `Du hast schon als ${name} geantwortet. Wenn du erneut sendest, kommt eine neue Antwort dazu.`,
+					calSheetTitle: "Zu deinem Kalender hinzufügen",
+					calHint: "Jeder Termin öffnet deine Kalender App, bereit zum Speichern.",
+					calAdd: "Hinzufügen",
+					calFile: "Oder alles als Kalenderdatei herunterladen",
 					messageLabel: "Eine Nachricht für uns",
 					messageHint: "Optional.",
 					send: "Senden",
@@ -950,6 +993,10 @@
 					addCal: "添加到日历",
 					daysLeft: (n) => `还剩 ${n} 天`,
 					answered: (name) => `您已以 ${name} 的名义回复。再次提交会新增一条回复。`,
+					calSheetTitle: "添加到您的日历",
+					calHint: "每项都会打开您的日历应用，确认保存即可。",
+					calAdd: "添加",
+					calFile: "或下载包含全部活动的日历文件",
 					messageLabel: "给我们的留言",
 					messageHint: "选填。",
 					send: "提交",
@@ -1049,6 +1096,40 @@
 			}
 
 			// A returning guest sees that they already answered, so answers aren't sent twice by accident.
+			// Calendar events, shared by the Android sheet. Times in UTC (Copenhagen is UTC+1 in December).
+			const CAL_EVENTS = [
+				{ title: "boatTitle", when: "8.12 11:30", start: "2026-12-08T10:30:00Z", end: "2026-12-08T12:30:00Z", where: "Café Lille Fugl, Gammel Strand 48, 1202 København", text: (t) => `11:30 ${t.meetTitle}. ${t.meetText}\n${t.boatText}` },
+				{ title: "tivoliTitle", when: "8.12 13:45", start: "2026-12-08T12:45:00Z", end: "2026-12-08T14:45:00Z", where: "Tivoli, Vesterbrogade 3, 1630 København", text: (t) => t.tivoliText },
+				{ title: "ceremonyTitle", when: "9.12 09:50", start: "2026-12-09T08:35:00Z", end: "2026-12-09T09:05:00Z", where: "Københavns Rådhus, Rådhuspladsen 1, 1550 København", text: (t) => t.ceremonyText },
+				{ title: "louisianaTitle", when: "9.12 11:00", start: "2026-12-09T10:00:00Z", end: "2026-12-09T14:00:00Z", where: "Dragespringvandet, Rådhuspladsen, 1550 København", text: (t) => t.louisianaText },
+				{ title: "dinnerTitle", when: "9.12 18:00", start: "2026-12-09T17:00:00Z", end: "2026-12-09T20:00:00Z", where: "Restaurant Cofoco, Abel Cathrines Gade 7, 1654 København", text: (t) => t.dinnerText },
+			];
+			const isAndroid = /Android/i.test(navigator.userAgent);
+
+			// Opens the phone's default calendar app with the event filled in; Google Calendar on the web if no app answers.
+			function androidCalLink(ev) {
+				const t = T[lang];
+				const title = `${t[ev.title]} · Anja & João`;
+				const details = `${ev.text(t)}\nhttps://joaomira.com/wedding/`;
+				const stamp = (iso) => iso.replace(/[-:]/g, "").replace(".000", "");
+				const web = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+					`&text=${encodeURIComponent(title)}&dates=${stamp(ev.start)}/${stamp(ev.end)}` +
+					`&details=${encodeURIComponent(details)}&location=${encodeURIComponent(ev.where)}`;
+				const e = encodeURIComponent;
+				return "intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.item/event;" +
+					`S.title=${e(title)};S.eventLocation=${e(ev.where)};S.description=${e(details)};` +
+					`l.beginTime=${Date.parse(ev.start)};l.endTime=${Date.parse(ev.end)};` +
+					`S.browser_fallback_url=${e(web)};end`;
+			}
+
+			function openCalSheet() {
+				const t = T[lang];
+				$("#cal-list").innerHTML = CAL_EVENTS.map((ev) =>
+					`<li><span class="cal-when">${ev.when}</span><span class="cal-what">${t[ev.title]}</span><a href="${androidCalLink(ev)}">${t.calAdd}</a></li>`
+				).join("");
+				$("#cal-sheet").showModal();
+			}
+
 			function showAnswered() {
 				let prev = null;
 				try { prev = JSON.parse(localStorage.getItem("wedding-answered")); } catch (e) {}
@@ -1275,6 +1356,18 @@
 			$("#form").addEventListener("submit", submit);
 			$("#again").addEventListener("click", reset);
 			$("#edit").addEventListener("click", edit);
+
+			// On Android, "Add to calendar" opens the sheet; iPhones and computers use the calendar file directly.
+			$$(".add-cal").forEach((a) =>
+				a.addEventListener("click", (e) => {
+					if (!isAndroid || typeof HTMLDialogElement === "undefined") return;
+					e.preventDefault();
+					openCalSheet();
+				})
+			);
+			$("#cal-list").addEventListener("click", (e) => e.target.closest("a")?.classList.add("done"));
+			$("#cal-sheet [data-close]").addEventListener("click", () => $("#cal-sheet").close());
+			$("#cal-sheet").addEventListener("click", (e) => { if (e.target === e.currentTarget) e.currentTarget.close(); });
 
 			applyLang();
 			updateEvents();
