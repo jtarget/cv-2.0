@@ -12,7 +12,7 @@
 			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap"
 			rel="stylesheet"
 		/>
-		<title>João & Anja</title>
+		<title>Anja & João</title>
 		<style>
 			:root {
 				--paper: #f6efe3;
@@ -144,6 +144,12 @@
 				mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center / contain no-repeat;
 			}
 			.event .map:hover { border-color: var(--accent); }
+			.event .tip {
+				margin: 10px 0 0; padding: 10px 12px; border-radius: 12px;
+				background: var(--card); border: 1px dashed var(--line-strong);
+				font-size: 13px; color: var(--ink);
+			}
+			.event .tip::before { content: "🎫"; display: inline-block; margin-right: 8px; }
 			.event .on-us {
 				display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
 				font-size: 12px; font-weight: 500; color: var(--gold-ink); background: var(--gold-soft);
@@ -364,7 +370,7 @@
 				<div class="invite">
 					<svg class="ornament" width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><g><path d="M20 4v32M6.1 12l27.8 16M6.1 28l27.8-16"/><path d="M20 4l-3 3M20 4l3 3M20 36l-3-3M20 36l3-3M6.1 12l1.1 4.1M6.1 12l4.1-1.1M33.9 28l-1.1-4.1M33.9 28l-4.1 1.1M6.1 28l4.1 1.1M6.1 28l1.1-4.1M33.9 12l-4.1-1.1M33.9 12l-1.1 4.1"/><circle cx="20" cy="20" r="2.2"/></g></svg>
 					<p class="kicker" data-t="kicker"></p>
-					<h1>João <span class="amp">&amp;</span> Anja</h1>
+					<h1>Anja <span class="amp">&amp;</span> João</h1>
 					<p class="when" data-t="when"></p>
 					<p class="intro" data-t="intro"></p>
 					<p class="reply-by" data-t="replyBy"></p>
@@ -422,6 +428,7 @@
 							<h3 data-t="louisianaTitle"></h3>
 							<p data-t="louisianaText"></p>
 							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=55.67633%2C12.56864" target="_blank" rel="noopener">Rådhuspladsen metro</a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Louisiana%20Museum%20of%20Modern%20Art%2C%20Gammel%20Strandvej%2013%2C%203050%20Humleb%C3%A6k" target="_blank" rel="noopener">Louisiana</a></p>
+							<p class="tip" data-t="rejsekortTip"></p>
 							<span class="on-us" data-t="lunchOnUs"></span>
 						</div>
 					</div>
@@ -531,7 +538,7 @@
 				</div>
 			</section>
 
-			<footer><svg class="ornament" width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><g><path d="M20 4v32M6.1 12l27.8 16M6.1 28l27.8-16"/><path d="M20 4l-3 3M20 4l3 3M20 36l-3-3M20 36l3-3M6.1 12l1.1 4.1M6.1 12l4.1-1.1M33.9 28l-1.1-4.1M33.9 28l-4.1 1.1M6.1 28l4.1 1.1M6.1 28l1.1-4.1M33.9 12l-4.1-1.1M33.9 12l-1.1 4.1"/><circle cx="20" cy="20" r="2.2"/></g></svg><div>João &amp; Anja · København 2026</div></footer>
+			<footer><svg class="ornament" width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><g><path d="M20 4v32M6.1 12l27.8 16M6.1 28l27.8-16"/><path d="M20 4l-3 3M20 4l3 3M20 36l-3-3M20 36l3-3M6.1 12l1.1 4.1M6.1 12l4.1-1.1M33.9 28l-1.1-4.1M33.9 28l-4.1 1.1M6.1 28l4.1 1.1M6.1 28l1.1-4.1M33.9 12l-4.1-1.1M33.9 12l-1.1 4.1"/><circle cx="20" cy="20" r="2.2"/></g></svg><div>Anja &amp; João · København 2026</div></footer>
 		</div>
 
 		<div class="tray" id="tray" aria-hidden="true">
@@ -570,9 +577,10 @@
 					tivoliText: "We carry on together, with no set end time. Staying for dinner at the food court is optional.",
 					day2: "Wednesday, 9 December",
 					ceremonyTitle: "Ceremony at City Hall",
-					ceremonyText: "Be inside by 09:35. From the main entrance, follow the hearts on the floor through the Great Hall to the waiting area. The ceremony is in the Wedding Hall and takes about 15 minutes.",
+					ceremonyText: "Be inside by 09:35. From the main entrance, follow the hearts on the floor through the Great Hall to the waiting area. The ceremony is in the Wedding Hall and takes about 15 minutes. Afterwards there's time to stop by the hotel.",
 					louisianaTitle: "Louisiana Museum",
-					louisianaText: "Meet at the main entrance of Rådhuspladsen metro station, facing the City Hall tower, and we travel to the museum together. Time to stop by the hotel first.",
+					louisianaText: "Meet at the main entrance of Rådhuspladsen metro station, facing the City Hall tower, and we travel to the museum together.",
+					rejsekortTip: "Tip: download the Rejsekort app ahead of time and add a payment card, so you can check in and out on the metro and trains.",
 					lunchOnUs: "Entrance and lunch on us",
 					dinnerTitle: "Dinner at Vækst",
 					dinnerText: "We end the day together.",
@@ -648,9 +656,10 @@
 					tivoliText: "Continuamos juntos, sem hora para acabar. Ficar para jantar na zona de restauração é opcional.",
 					day2: "Quarta-feira, 9 de dezembro",
 					ceremonyTitle: "Cerimónia na Câmara Municipal",
-					ceremonyText: "Chega lá dentro até às 09:35. Da entrada principal, segue os corações no chão pelo Grande Salão até à sala de espera. A cerimónia é na Sala dos Casamentos e dura cerca de 15 minutos.",
+					ceremonyText: "Chega lá dentro até às 09:35. Da entrada principal, segue os corações no chão pelo Grande Salão até à sala de espera. A cerimónia é na Sala dos Casamentos e dura cerca de 15 minutos. Depois há tempo para passar pelo hotel.",
 					louisianaTitle: "Museu Louisiana",
-					louisianaText: "Encontro na entrada principal da estação de metro de Rådhuspladsen, virada para a torre da Câmara, e vamos juntos ao museu. Há tempo para passar pelo hotel antes.",
+					louisianaText: "Encontro na entrada principal da estação de metro de Rådhuspladsen, virada para a torre da Câmara, e vamos juntos ao museu.",
+					rejsekortTip: "Dica: descarrega a app Rejsekort com antecedência e adiciona um cartão de pagamento, para fazeres check in e check out no metro e nos comboios.",
 					lunchOnUs: "Entrada e almoço por nossa conta",
 					dinnerTitle: "Jantar no Vækst",
 					dinnerText: "Terminamos o dia juntos.",
@@ -726,9 +735,10 @@
 					tivoliText: "Wir ziehen gemeinsam weiter, ohne festes Ende. Zum Abendessen im Food Court zu bleiben ist optional.",
 					day2: "Mittwoch, 9. Dezember",
 					ceremonyTitle: "Trauung im Rathaus",
-					ceremonyText: "Sei bis 09:35 drinnen. Folge vom Haupteingang den Herzen am Boden durch die große Halle bis zum Wartebereich. Die Trauung findet im Hochzeitssaal statt und dauert etwa 15 Minuten.",
+					ceremonyText: "Sei bis 09:35 drinnen. Folge vom Haupteingang den Herzen am Boden durch die große Halle bis zum Wartebereich. Die Trauung findet im Hochzeitssaal statt und dauert etwa 15 Minuten. Danach bleibt Zeit, kurz ins Hotel zu gehen.",
 					louisianaTitle: "Louisiana Museum",
-					louisianaText: "Treffpunkt am Haupteingang der Metrostation Rådhuspladsen, gegenüber dem Rathausturm. Von dort fahren wir gemeinsam zum Museum. Vorher bleibt Zeit fürs Hotel.",
+					louisianaText: "Treffpunkt am Haupteingang der Metrostation Rådhuspladsen, gegenüber dem Rathausturm. Von dort fahren wir gemeinsam zum Museum.",
+					rejsekortTip: "Tipp: Lade vorab die Rejsekort App herunter und hinterlege eine Zahlungskarte, damit du dich in Metro und Zügen ein und auschecken kannst.",
 					lunchOnUs: "Eintritt und Mittagessen auf uns",
 					dinnerTitle: "Abendessen im Vækst",
 					dinnerText: "Wir lassen den Tag gemeinsam ausklingen.",
@@ -804,9 +814,10 @@
 					tivoliText: "我们一起继续游玩，不设结束时间。可自愿留在美食广场吃晚餐。",
 					day2: "12月9日 星期三",
 					ceremonyTitle: "市政厅婚礼仪式",
-					ceremonyText: "请于 09:35 前到达室内。从正门进入，沿地上的爱心标志穿过大厅，到达等候区。仪式在婚礼厅举行，约15分钟。",
+					ceremonyText: "请于 09:35 前到达室内。从正门进入，沿地上的爱心标志穿过大厅，到达等候区。仪式在婚礼厅举行，约15分钟。之后有时间回酒店。",
 					louisianaTitle: "路易斯安那博物馆",
-					louisianaText: "在 Rådhuspladsen 地铁站正门集合（面向市政厅钟楼），然后一起前往博物馆。之前有时间回酒店。",
+					louisianaText: "在 Rådhuspladsen 地铁站正门集合（面向市政厅钟楼），然后一起前往博物馆。",
+					rejsekortTip: "小贴士：请提前下载 Rejsekort 应用并绑定银行卡，乘坐地铁和火车时即可刷卡进出站。",
 					lunchOnUs: "门票和午餐我们请客",
 					dinnerTitle: "Vækst 晚餐",
 					dinnerText: "一起为这一天画上句号。",
