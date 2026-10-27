@@ -312,6 +312,9 @@
 			.summary li b { font-weight: 500; color: var(--ink); }
 			.thanks button { height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--hair-2); background: none; cursor: pointer; font: 500 14px/1 var(--sans); color: var(--ink); }
 			.thanks button:hover { border-color: var(--ink); }
+			.thanks-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+			.thanks button.primary { color: #fff; background: var(--indigo); border-color: var(--indigo); }
+			.thanks button.primary:hover { background: var(--indigo-deep); border-color: var(--indigo-deep); }
 
 			footer { display: flex; justify-content: space-between; gap: 16px; padding: 28px 0 56px; border-top: 1px solid var(--hair-2); font: 500 11px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 			footer .ornament { display: none; }
@@ -599,7 +602,10 @@
 					<p data-t="thanksText"></p>
 					<ul class="summary" id="summary"></ul>
 					<a class="add-cal" data-cal href="cal/anja-joao-en.ics"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2.5"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3M8 8.5v3.5M6.25 10.25h3.5"/></svg><span data-t="addCal"></span></a>
-					<button type="button" id="again" data-t="again"></button>
+					<div class="thanks-actions">
+						<button type="button" id="edit" class="primary" data-t="edit"></button>
+						<button type="button" id="again" data-t="again"></button>
+					</div>
 				</div>
 				</div>
 			</section>
@@ -702,6 +708,7 @@
 					thanksTitle: "Thank you!",
 					thanksText: "See you in Copenhagen!",
 					thanksTextNo: "Thanks for letting us know. We'll miss you.",
+					edit: "Edit answer",
 					again: "Answer for someone else",
 				},
 				pt: {
@@ -786,6 +793,7 @@
 					thanksTitle: "Obrigado!",
 					thanksText: "Até breve em Copenhaga!",
 					thanksTextNo: "Obrigado por avisares. Vamos sentir a tua falta.",
+					edit: "Editar resposta",
 					again: "Responder por outra pessoa",
 				},
 				de: {
@@ -870,6 +878,7 @@
 					thanksTitle: "Danke!",
 					thanksText: "Bis bald in Kopenhagen!",
 					thanksTextNo: "Danke für deine Nachricht. Wir werden dich vermissen.",
+					edit: "Antwort ändern",
 					again: "Für jemand anderen antworten",
 				},
 				zh: {
@@ -954,6 +963,7 @@
 					thanksTitle: "谢谢！",
 					thanksText: "哥本哈根见！",
 					thanksTextNo: "谢谢告知，我们会想念您的。",
+					edit: "修改回复",
 					again: "替其他人填写",
 				},
 			};
@@ -965,6 +975,9 @@
 			let lang = pickLang();
 			let mode = "singles";
 			let filter = "all";
+			// Each answer gets an id; sending again with the same id (an edit) replaces its row in the Sheet.
+			const newId = () => (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+			let answerId = newId();
 			const FISH = new Set(["sild", "aeg-rejer", "laksetatar", "laks"]);
 			const kind = (item) => (item.veg ? "veg" : FISH.has(item.id) ? "fish" : "meat");
 			const picks = []; // single sandwich ids, in the order they were chosen
@@ -1145,6 +1158,7 @@
 						: [...$$('input[name="diet"]:checked').map((i) => i.value), $("#diet-other").value.trim()].filter(Boolean).join(", "),
 					message: $("#message").value.trim(),
 					language: lang,
+					id: answerId,
 				};
 			}
 
@@ -1206,7 +1220,17 @@
 				return rows.map(([icon, label, value]) => `<li><span>${icon}</span><span><b>${label}:</b> ${esc(value)}</span></li>`).join("");
 			}
 
+			// Back to the filled in form; sending again updates the same answer.
+			function edit() {
+				$("#thanks").hidden = true;
+				$("#form").hidden = false;
+				$("#answered").hidden = true;
+				updateTray();
+				$("#rsvp-section").scrollIntoView({ behavior: "smooth" });
+			}
+
 			function reset() {
+				answerId = newId();
 				$("#form").reset();
 				picks.length = 0;
 				filter = "all";
@@ -1250,6 +1274,7 @@
 			$("#name").addEventListener("input", () => ($("#err-name").textContent = ""));
 			$("#form").addEventListener("submit", submit);
 			$("#again").addEventListener("click", reset);
+			$("#edit").addEventListener("click", edit);
 
 			applyLang();
 			updateEvents();
