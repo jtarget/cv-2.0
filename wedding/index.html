@@ -6,12 +6,12 @@
 		<meta name="robots" content="noindex, nofollow" />
 		<meta name="color-scheme" content="light" />
 		<meta name="theme-color" content="#f6f5f1" />
-		<meta name="description" content="8 and 9 December 2026, Copenhagen. Please reply by 8 November." />
+		<meta name="description" content="8 and 9 December 2026, Copenhagen. Please reply by 31 October." />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://joaomira.com/wedding/" />
 		<meta property="og:title" content="Anja & João" />
-		<meta property="og:description" content="8 and 9 December 2026, Copenhagen. Please reply by 8 November." />
-		<meta property="og:image" content="https://joaomira.com/wedding/img/share.jpg" />
+		<meta property="og:description" content="8 and 9 December 2026, Copenhagen. Please reply by 31 October." />
+		<meta property="og:image" content="https://joaomira.com/wedding/img/share.jpg?v=2" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
@@ -629,7 +629,7 @@
 					sumFood: "Smørrebrød",
 					sumDrink: "Drink",
 					when: "Copenhagen",
-					replyBy: "Please reply by 8 November",
+					replyBy: "Please reply by 31 October",
 					intro: "We're getting married. Come and celebrate with us.",
 					programme: "Here's the plan",
 					day1: "Tuesday, 8 December",
@@ -713,7 +713,7 @@
 					sumFood: "Smørrebrød",
 					sumDrink: "Bebida",
 					when: "Copenhaga",
-					replyBy: "Responde até 8 de novembro",
+					replyBy: "Responde até 31 de outubro",
 					intro: "Vamos casar. Vem celebrar connosco.",
 					programme: "Aqui vai o plano",
 					day1: "Terça-feira, 8 de dezembro",
@@ -797,7 +797,7 @@
 					sumFood: "Smørrebrød",
 					sumDrink: "Getränk",
 					when: "Kopenhagen",
-					replyBy: "Bitte antworte bis zum 8. November",
+					replyBy: "Bitte antworte bis zum 31. Oktober",
 					intro: "Wir heiraten. Komm und feiere mit uns.",
 					programme: "Das ist der Plan",
 					day1: "Dienstag, 8. Dezember",
@@ -881,7 +881,7 @@
 					sumFood: "开放式三明治",
 					sumDrink: "饮品",
 					when: "哥本哈根",
-					replyBy: "请于11月8日前回复",
+					replyBy: "请于10月31日前回复",
 					intro: "我们要结婚了，欢迎来和我们一起庆祝。",
 					programme: "行程是这样的",
 					day1: "12月8日 星期二",
@@ -1019,8 +1019,8 @@
 					if (typeof v === "string") el.textContent = v;
 				});
 				$$("[data-ph]").forEach((el) => (el.placeholder = t[el.dataset.ph]));
-				// Countdown to the reply deadline, the end of 8 November in Copenhagen.
-				const left = Math.ceil((new Date("2026-11-08T23:59:59+01:00") - Date.now()) / 864e5);
+				// Countdown to the reply deadline, the end of 31 October in Copenhagen.
+				const left = Math.ceil((new Date("2026-10-31T23:59:59+01:00") - Date.now()) / 864e5);
 				$$('[data-t="replyBy"]').forEach((el) => (el.textContent = left > 0 ? `${t.replyBy} · ${t.daysLeft(left)}` : t.replyBy));
 				$$("[data-cal]").forEach((a) => (a.href = `cal/anja-joao-${lang}.ics`));
 				showAnswered();
