@@ -150,6 +150,11 @@
 				font-size: 13px; color: var(--ink);
 			}
 			.event .tip::before { content: "🎫"; display: inline-block; margin-right: 8px; }
+			.event .tip .stores { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+			.event .tip .stores a {
+				font-size: 13px; font-weight: 500; color: #fff; background: var(--accent); text-decoration: none;
+				padding: 7px 14px; border-radius: 999px;
+			}
 			.event .on-us {
 				display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
 				font-size: 12px; font-weight: 500; color: var(--gold-ink); background: var(--gold-soft);
@@ -428,7 +433,13 @@
 							<h3 data-t="louisianaTitle"></h3>
 							<p data-t="louisianaText"></p>
 							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=55.67633%2C12.56864" target="_blank" rel="noopener">Rådhuspladsen metro</a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Louisiana%20Museum%20of%20Modern%20Art%2C%20Gammel%20Strandvej%2013%2C%203050%20Humleb%C3%A6k" target="_blank" rel="noopener">Louisiana</a></p>
-							<p class="tip" data-t="rejsekortTip"></p>
+							<div class="tip">
+								<span data-t="rejsekortTip"></span>
+								<span class="stores">
+									<a href="https://apps.apple.com/dk/app/rejsekort/id6469603787" target="_blank" rel="noopener">App Store</a>
+									<a href="https://play.google.com/store/apps/details?id=dk.rejsekort.digitalrejsekort" target="_blank" rel="noopener">Google Play</a>
+								</span>
+							</div>
 							<span class="on-us" data-t="lunchOnUs"></span>
 						</div>
 					</div>
