@@ -667,9 +667,9 @@
 					evDinnerWhen: "Wed 9 Dec, 18:00",
 					evNone: "Sadly, I can't make it",
 					sandwichLabel: "Your lunch on the boat",
-					sandwichHint: "From Aamanns. We recommend 2 for a light lunch or 3 for a satisfying lunch. Or pick a set of 3.",
+					sandwichHint: "From Aamanns. We recommend 2 for a light lunch or 3 for a satisfying lunch. Or pick a set.",
 					modeSingles: "Choose 2 or 3",
-					modeBundle: "A set of 3",
+					modeBundle: "A set",
 					counter: (n) => (n < 2 ? `${n} chosen, pick 2 or 3` : n === 2 ? "2 chosen, a light lunch" : "3 chosen, a satisfying lunch"),
 					veg: "Vegetarian",
 					drinkLabel: "Your drink on board",
@@ -751,9 +751,9 @@
 					evDinnerWhen: "Qua 9 dez, 18:00",
 					evNone: "Infelizmente não posso ir",
 					sandwichLabel: "O teu almoço no barco",
-					sandwichHint: "Da Aamanns. Recomendamos 2 para um almoço leve ou 3 para um almoço mais completo. Ou escolhe um conjunto de 3.",
+					sandwichHint: "Da Aamanns. Recomendamos 2 para um almoço leve ou 3 para um almoço mais completo. Ou escolhe um conjunto.",
 					modeSingles: "Escolher 2 ou 3",
-					modeBundle: "Um conjunto de 3",
+					modeBundle: "Um conjunto",
 					counter: (n) => (n < 2 ? `${n} escolhidas, escolhe 2 ou 3` : n === 2 ? "2 escolhidas, um almoço leve" : "3 escolhidas, um almoço mais completo"),
 					veg: "Vegetariano",
 					drinkLabel: "A tua bebida a bordo",
@@ -835,9 +835,9 @@
 					evDinnerWhen: "Mi 9. Dez, 18:00",
 					evNone: "Leider kann ich nicht kommen",
 					sandwichLabel: "Dein Mittagessen auf dem Boot",
-					sandwichHint: "Von Aamanns. Wir empfehlen 2 für ein leichtes oder 3 für ein sättigendes Mittagessen. Oder wähle ein Set mit 3.",
+					sandwichHint: "Von Aamanns. Wir empfehlen 2 für ein leichtes oder 3 für ein sättigendes Mittagessen. Oder wähle ein Set.",
 					modeSingles: "2 oder 3 wählen",
-					modeBundle: "Ein Set mit 3",
+					modeBundle: "Ein Set",
 					counter: (n) => (n < 2 ? `${n} ausgewählt, wähle 2 oder 3` : n === 2 ? "2 ausgewählt, ein leichtes Mittagessen" : "3 ausgewählt, ein sättigendes Mittagessen"),
 					veg: "Vegetarisch",
 					drinkLabel: "Dein Getränk an Bord",
@@ -919,9 +919,9 @@
 					evDinnerWhen: "12月9日 星期三 18:00",
 					evNone: "很遗憾，我无法参加",
 					sandwichLabel: "您在船上的午餐",
-					sandwichHint: "来自 Aamanns。建议轻食午餐选2份，想吃饱一些选3份。也可选1个三件套。",
+					sandwichHint: "来自 Aamanns。建议轻食午餐选2份，想吃饱一些选3份。也可选一个套餐。",
 					modeSingles: "选2或3份",
-					modeBundle: "1个三件套",
+					modeBundle: "套餐",
 					counter: (n) => (n < 2 ? `已选 ${n} 份，请选2或3份` : n === 2 ? "已选2份，轻食午餐" : "已选3份，丰盛午餐"),
 					veg: "素食",
 					drinkLabel: "您在船上的饮品",
@@ -965,7 +965,7 @@
 			let lang = pickLang();
 			let mode = "singles";
 			let filter = "all";
-			const FISH = new Set(["rejer-surdej", "sild", "aeg-rejer", "laksetatar", "laks", "roedspaette", "roedspaette-rejesalat"]);
+			const FISH = new Set(["sild", "aeg-rejer", "laksetatar", "laks"]);
 			const kind = (item) => (item.veg ? "veg" : FISH.has(item.id) ? "fish" : "meat");
 			const picks = []; // single sandwich ids, in the order they were chosen
 
