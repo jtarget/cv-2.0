@@ -9,7 +9,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap"
 			rel="stylesheet"
 		/>
 		<title>Anja & João</title>
@@ -360,6 +360,49 @@
 				.reveal { opacity: 1; transform: none; }
 				html { scroll-behavior: auto; }
 			}
+
+			/* Nordic minimal theme: white page, one typeface, indigo accent */
+			:root {
+				--paper: #ffffff; --paper-deep: #f3f3f6; --card: #ffffff;
+				--ink: #121212; --muted: #6b6b72; --line: #ececf0; --line-strong: #d9d9e0;
+				--accent: #3534a0; --gold: #3534a0; --gold-soft: #eeeefb; --gold-ink: #2b2a86;
+				--shadow: none;
+				--serif: "Inter Tight", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+				--sans: "Inter Tight", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+			}
+			body { background: var(--paper); }
+			header { padding: 40px 0 24px; }
+			.invite { background: none; box-shadow: none; outline: none; text-align: left; padding: 48px 0 32px; }
+			.invite::after, .invite .ornament { display: none; }
+			.kicker { font: 500 14px/1.2 var(--sans); letter-spacing: 0; text-transform: none; color: var(--ink); margin: 0 0 18px; }
+			h1 { font: 300 clamp(68px, 17vw, 136px)/0.88 var(--sans); letter-spacing: -0.05em; }
+			h1 .amp { font-style: normal; font-weight: 300; color: var(--accent); }
+			.when { font: 400 18px/1.3 var(--sans); color: var(--muted); margin-top: 16px; }
+			.intro { margin: 28px 0 0; max-width: 520px; font-size: 21px; line-height: 1.35; letter-spacing: -0.01em; }
+			.reply-by { letter-spacing: 0.06em; color: var(--accent); }
+			.reply-by::before, .reply-by::after { display: none; }
+			.reply-by.under { justify-content: flex-start; margin: -24px 0 28px; }
+			.cta { margin: 28px 0 0; background: var(--accent); }
+			.cta:hover { box-shadow: 0 6px 18px rgba(53, 52, 160, .25); }
+			section { border-top: 1px solid var(--ink); padding-top: 28px; }
+			h2 { justify-content: flex-start; font: 500 40px/1 var(--sans); letter-spacing: -0.035em; }
+			h2::before, h2::after { display: none; }
+			.thanks h2 { justify-content: center; }
+			.day-title { background: none; border: 0; padding: 0; letter-spacing: 0.08em; color: var(--muted); }
+			.event::before { background: var(--accent); border: 0; width: 7px; height: 7px; top: 28px; }
+			.event .time { font: 500 18px/1.3 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; }
+			.event .time .until { font-size: 15px; }
+			.event h3 { font: 500 22px/1.2 var(--sans); letter-spacing: -0.02em; }
+			.sheet { border-radius: 20px; }
+			.field label.title, .field .title { font: 500 24px/1.2 var(--sans); letter-spacing: -0.02em; }
+			.field > .title::before { background: var(--accent); color: #fff; }
+			.submit:hover { box-shadow: 0 8px 20px rgba(53, 52, 160, .25); }
+			.tray { background: var(--accent); }
+			.tray .slot { border-color: var(--accent); }
+			.tray.done { background: #1f1e6b; }
+			.tray.done .slot { border-color: #1f1e6b; }
+			.ornament { color: var(--accent); }
+			footer { font: 400 15px/1.4 var(--sans); }
 		</style>
 	</head>
 	<body>
@@ -566,7 +609,7 @@
 
 			const T = {
 				en: {
-					kicker: "We're getting married",
+					kicker: "8 and 9 December 2026",
 					cta: "Answer here",
 					filterAll: "All",
 					filterVeg: "Vegetarian",
@@ -575,9 +618,9 @@
 					sumEvents: "Joining",
 					sumFood: "Smørrebrød",
 					sumDrink: "Drink",
-					when: "Copenhagen · 8 and 9 December 2026",
+					when: "Copenhagen",
 					replyBy: "Please reply by 8 November",
-					intro: "Two winter days in Copenhagen, and we'd love you there.",
+					intro: "We're getting married. Come and celebrate with us.",
 					programme: "The plan",
 					day1: "Tuesday, 8 December",
 					meetTitle: "Meet at Café Lille Fugl",
@@ -646,7 +689,7 @@
 					again: "Answer for someone else",
 				},
 				pt: {
-					kicker: "Vamos casar",
+					kicker: "8 e 9 de dezembro de 2026",
 					cta: "Responder aqui",
 					filterAll: "Todas",
 					filterVeg: "Vegetarianas",
@@ -655,9 +698,9 @@
 					sumEvents: "Vais a",
 					sumFood: "Smørrebrød",
 					sumDrink: "Bebida",
-					when: "Copenhaga · 8 e 9 de dezembro de 2026",
+					when: "Copenhaga",
 					replyBy: "Responde até 8 de novembro",
-					intro: "Dois dias de inverno em Copenhaga, e adorávamos ter-te lá.",
+					intro: "Vamos casar. Vem celebrar connosco.",
 					programme: "O plano",
 					day1: "Terça-feira, 8 de dezembro",
 					meetTitle: "Encontro no Café Lille Fugl",
@@ -726,7 +769,7 @@
 					again: "Responder por outra pessoa",
 				},
 				de: {
-					kicker: "Wir heiraten",
+					kicker: "8. und 9. Dezember 2026",
 					cta: "Hier antworten",
 					filterAll: "Alle",
 					filterVeg: "Vegetarisch",
@@ -735,9 +778,9 @@
 					sumEvents: "Dabei bei",
 					sumFood: "Smørrebrød",
 					sumDrink: "Getränk",
-					when: "Kopenhagen · 8. und 9. Dezember 2026",
+					when: "Kopenhagen",
 					replyBy: "Bitte antworte bis zum 8. November",
-					intro: "Zwei Wintertage in Kopenhagen, und wir freuen uns auf dich.",
+					intro: "Wir heiraten. Komm und feiere mit uns.",
 					programme: "Der Plan",
 					day1: "Dienstag, 8. Dezember",
 					meetTitle: "Treffpunkt Café Lille Fugl",
@@ -806,7 +849,7 @@
 					again: "Für jemand anderen antworten",
 				},
 				zh: {
-					kicker: "我们要结婚了",
+					kicker: "2026年12月8日和9日",
 					cta: "在此回复",
 					filterAll: "全部",
 					filterVeg: "素食",
@@ -815,9 +858,9 @@
 					sumEvents: "参加",
 					sumFood: "开放式三明治",
 					sumDrink: "饮品",
-					when: "哥本哈根 · 2026年12月8日和9日",
+					when: "哥本哈根",
 					replyBy: "请于11月8日前回复",
-					intro: "哥本哈根的两个冬日，期待与您相聚。",
+					intro: "我们要结婚了，欢迎来和我们一起庆祝。",
 					programme: "行程安排",
 					day1: "12月8日 星期二",
 					meetTitle: "在 Café Lille Fugl 集合",
