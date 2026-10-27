@@ -164,15 +164,15 @@
 			.event .map::after { content: "↗"; font-size: 12px; color: var(--muted); transition: transform .2s var(--ease), color .2s; }
 			.event .map:hover { border-color: var(--indigo); color: var(--indigo); }
 			.event .map:hover::after { color: var(--indigo); transform: translate(1px, -1px); }
-			.event .tip {
-				order: 3; margin-top: 20px; padding: 18px 20px; max-width: 520px;
+			.tip {
+				margin-top: 48px; padding: 18px 20px; max-width: 560px;
 				background: var(--surface); border: 1px solid var(--hair); border-radius: 18px;
 				font-size: 14px; line-height: 1.55; color: var(--ink-2);
 			}
-			.event .tip .stores { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-			.event .tip .stores a { display: block; line-height: 0; border-radius: 8px; transition: opacity .2s, transform .25s var(--ease); }
-			.event .tip .stores a:hover { opacity: .85; transform: translateY(-1px); }
-			.event .tip .stores img { display: block; width: auto; height: 40px; }
+			.tip .stores { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+			.tip .stores a { display: block; line-height: 0; border-radius: 8px; transition: opacity .2s, transform .25s var(--ease); }
+			.tip .stores a:hover { opacity: .85; transform: translateY(-1px); }
+			.tip .stores img { display: block; width: auto; height: 40px; }
 
 			/* Form */
 			.sheet { position: relative; }
@@ -483,13 +483,6 @@
 							<h3 data-t="louisianaTitle"></h3>
 							<p data-t="louisianaText"></p>
 							<p class="maps"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Dragespringvandet%2C%20R%C3%A5dhuspladsen%2C%201550%20K%C3%B8benhavn" target="_blank" rel="noopener" data-t="mapMetro">Dragon Fountain</a><a class="map" href="https://www.google.com/maps/search/?api=1&query=Louisiana%20Museum%20of%20Modern%20Art%2C%20Gammel%20Strandvej%2013%2C%203050%20Humleb%C3%A6k" target="_blank" rel="noopener">Louisiana</a></p>
-							<div class="tip">
-								<span data-t="rejsekortTip"></span>
-								<span class="stores">
-									<a href="https://apps.apple.com/dk/app/rejsekort/id6469603787" target="_blank" rel="noopener"><img data-badge="apple" src="img/badges/apple-en.svg" alt="Download on the App Store" width="120" height="40" /></a>
-									<a href="https://play.google.com/store/apps/details?id=dk.rejsekort.digitalrejsekort" target="_blank" rel="noopener"><img data-badge="google" src="img/badges/google-en.png" alt="Get it on Google Play" width="135" height="40" /></a>
-								</span>
-							</div>
 							<span class="on-us" data-t="lunchOnUs"></span>
 						</div>
 					</div>
@@ -503,6 +496,14 @@
 						</div>
 					</div>
 					</div>
+				</div>
+
+				<div class="tip">
+					<span data-t="rejsekortTip"></span>
+					<span class="stores">
+						<a href="https://apps.apple.com/dk/app/rejsekort/id6469603787" target="_blank" rel="noopener"><img data-badge="apple" src="img/badges/apple-en.svg" alt="Download on the App Store" width="120" height="40" /></a>
+						<a href="https://play.google.com/store/apps/details?id=dk.rejsekort.digitalrejsekort" target="_blank" rel="noopener"><img data-badge="google" src="img/badges/google-en.png" alt="Get it on Google Play" width="135" height="40" /></a>
+					</span>
 				</div>
 			</section>
 
